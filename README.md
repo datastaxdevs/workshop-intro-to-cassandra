@@ -1,7 +1,7 @@
-🎓🔥 Welcome to WEEK 1 of the Cassandra Workshop Series 🔥🎓
+🎓🔥 Welcome to the Intro to Cassandra for Developers using DataStax Astra 🔥🎓
 ======================================================
 
-In this repository, you'll find everything you need for week 1 of the online Cassandra Workshop Series:
+In this repository, you'll find everything you need for this workshop:
 - Materials used during presentations
 - Hands-on exercises
 
@@ -13,24 +13,7 @@ Feel free to bookmark this page for future reference!
 | Title  | Description
 |---|---|
 | **Slide deck** | [Slide deck for the workshop](slides/Presentation.pdf) |
-| **0. Bootstrapping** | [Setup your environment](#0-bootstrapping) |
 | **1. Create your Astra instance** | [Create your Astra instance](#1-create-your-astra-instance) |
-| **2 -  DataStax Studio** | Upload the notebook [2_-_Datastax_Studio.tar](notebooks/2_-_Datastax_Studio.tar) into running instance of DataStax Studio and follow the instructions  |
-| **3 - Working with CQL** | Upload the notebook [3_-_Working_with_CQL.tar](notebooks/3_-_Working_with_CQL.tar) into running instance of DataStax Studio and follow the instructions  |
-
-
-## 0. Bootstrapping
-
-
-All information for the workshop today is available in the repository.
-
-You can either clone the repo with the following command or download as a ZIP.
-
-```
-git clone https://github.com/DataStax-Academy/cassandra-workshop-series.git
-```
-
-[🏠 Back to Table of Contents](#table-of-contents)
 
 
 ## 1. Create your Astra instance
@@ -105,6 +88,4 @@ We will be doing ALL of our exercises using Studio notebooks for this week.
 
 
 [🏠 Back to Table of Contents](#table-of-contents)
-
-![Well Done](../materials/images/welldone.jpg?raw=true)
 
