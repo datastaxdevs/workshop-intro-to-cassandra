@@ -5,9 +5,6 @@ In this repository, you'll find everything you need for this workshop:
 - Materials used during presentations
 - Hands-on exercises
 
-Feel free to bookmark this page for future reference!
-![BANNER](https://img.evbuc.com/https%3A%2F%2Fcdn.evbuc.com%2Fimages%2F104032164%2F312276190164%2F1%2Foriginal.20200619-083832?w=1080&auto=format%2Ccompress&q=75&sharp=10&rect=0%2C0%2C2160%2C1080&s=280bc415dcd91bae37c8e3729447c6fb)
-
 ## Table of Contents
 
 | Title  | Description
@@ -68,23 +65,7 @@ Once Database is ready you should see the following home page:
 ![Home Page](images/astra-create-5.png?raw=true)
 
 
-Let’s review the database you have configured. In the box on the left side of the window, you can see the database and keyspace name metadata. The box on the right describes the size and location of your database along with your estimated cost. Once Astra initializes the database completely, the left box will have connection details.
-
-### Step 1d.Open DataStax Studio
-
-You can click the **Launch Now** link at the bottom of "Connection Details" box on the left to start the tool. Please enter the credentials you used for Astra instance creation.
-
-![Launch Database](images/astra-create-6.png?raw=true)
-
-- **Fill in the Database User name** - `KVUser`. Note the user name is case-sensitive. Please use the case we suggest here.
-
-- **Fill in the password** - `KVPassword`. Fill in both the password and the confirmation fields. Note that the password is also case-sensitive. Please use the case we suggest here.
-
-- **Click Test**. Wait for a "connected successfully" message before saving.
-
-- **Click Save**. Once you have a positive test then click the **Save** button to launch DataStax Studio.
-
-We will be doing ALL of our exercises using Studio notebooks for this week.
+Let’s review the database you have configured. In the box on the left side of the window, you can see the database and keyspace name metadata. The box on the right describes the size and location of your database along with your estimated cost. Once Astra initializes the database completely, the left box will have connection details. Once you are at this point you have a database ready to go. We'll start using it in the next section.
 
 
 [🏠 Back to Table of Contents](#table-of-contents)
