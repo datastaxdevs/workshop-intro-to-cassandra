@@ -11,6 +11,7 @@ In this repository, you'll find everything you need for this workshop:
 |---|---|
 | **Slide deck** | [Slide deck for the workshop](slides/Presentation.pdf) |
 | **1. Create your Astra instance** | [Create your Astra instance](#1-create-your-astra-instance) |
+| **2. 2. Create tables and run simple CRUD ops** | [Create tables and run simple CRUD ops](#2-create-tables-and-run-simple-crud-ops) |
 
 
 ## 1. Create your Astra instance
@@ -70,3 +71,48 @@ Let’s review the database you have configured. In the box on the left side of 
 
 [🏠 Back to Table of Contents](#table-of-contents)
 
+
+## 2. Create tables and run simple CRUD ops
+
+```
+// User credentials, keyed by email address so we can authenticate
+CREATE TABLE IF NOT EXISTS user_credentials (
+    email     text,
+    password  text,
+    userid    uuid,
+    PRIMARY KEY (email));
+
+// Users keyed by id
+CREATE TABLE IF NOT EXISTS users (
+    userid     uuid,
+    firstname  text,
+    lastname   text,
+    email      text,
+    created_date timestamp,
+    PRIMARY KEY (userid));
+
+```
+
+
+example insert statements
+```
+INSERT INTO killrvideo.users (userid, created_date, firstname, lastname, email)
+  VALUES(77777777-7777-7777-7777-777777777777, toTimestamp(now()), 'Aleks', 'volochnev', 'av@datastax.com');
+INSERT INTO killrvideo.user_credentials (userid, email, password)
+  VALUES(77777777-7777-7777-7777-777777777777, 'av@datastax.com', 'C@ss@ndr@3v3rywh3r3');
+
+INSERT INTO killrvideo.users (userid, created_date, firstname, lastname, email)
+  VALUES(44444444-4444-4444-4444-444444444444, toTimestamp(now()), 'David', 'Gilardi', 'dg@datastax.com');
+INSERT INTO killrvideo.user_credentials (userid, email, password)
+  VALUES(44444444-4444-4444-4444-444444444444, 'dg@datastax.com', 'H@t$0ff2C@ss@ndr@');
+
+INSERT INTO killrvideo.users (userid, created_date, firstname, lastname, email)
+  VALUES(22222222-2222-2222-2222-222222222222, toTimestamp(now()), 'Eric', 'Zietlow', 'ez@datastax.com');
+INSERT INTO killrvideo.user_credentials (userid, email, password)
+  VALUES(22222222-2222-2222-2222-222222222222, 'ez@datastax.com', 'C@ss@ndr@R0ck$');
+
+INSERT INTO killrvideo.users (userid, created_date, firstname, lastname, email)
+  VALUES(33333333-3333-3333-3333-333333333333, toTimestamp(now()), 'Cedrick', 'Lunven', 'cl@datastax.com');
+INSERT INTO killrvideo.user_credentials (userid, email, password)
+  VALUES(33333333-3333-3333-3333-333333333333, 'cl@datastax.com', 'Fr@nc3L0v3$C@ss@ndr@');
+```
