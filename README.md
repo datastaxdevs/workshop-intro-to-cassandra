@@ -11,7 +11,8 @@ In this repository, you'll find everything you need for this workshop:
 |---|---|
 | **Slide deck** | [Slide deck for the workshop](slides/Presentation.pdf) |
 | **1. Create your Astra instance** | [Create your Astra instance](#1-create-your-astra-instance) |
-| **2. Create tables and run simple CRUD ops** | [Create tables and run simple CRUD ops](#2-create-tables-and-run-simple-crud-ops) |
+| **2. Create a table** | [Create a table](#2-create-a-table) |
+| **3. Execute CRUD (Create, Read, Update, Delete) operations** | [Execute CRUD operations](#3-execute-crud-operations) |
 
 
 ## 1. Create your Astra instance
@@ -72,8 +73,8 @@ Let’s review the database you have configured. In the box on the left side of 
 [🏠 Back to Table of Contents](#table-of-contents)
 
 
-## 2. Create tables and run simple CRUD operations
-Ok, now that you have a database created the next step is to create some tables we can use to work with. 
+## 2. Create a table
+Ok, now that you have a database created the next step is to create a table to work with. 
 
 **✅ Step 2a. Navigate to the CQL Console and login to the database**
 
@@ -93,7 +94,7 @@ At this point you should see something like the following:
 
 **✅ Step 2b. Describe keyspaces and USE killrvideo**
 
-Ok, you're logged in, and now we're ready to rock. Creating tables is quite easy, but before we create some tables we need to tell the database which keyspace we are working with.
+Ok, you're logged in, and now we're ready to rock. Creating tables is quite easy, but before we create one we need to tell the database which keyspace we are working with.
 
 First, let's **_DESCRIBE_** all of the keyspaces that are in the database. This will give us a list of the available keyspaces.
 
@@ -118,58 +119,184 @@ use killrvideo;
 
 ![Use keyspaces](images/astra-use-cql-console-use-killrvideo.png?raw=true)
 
-Notice how the prompt displays ```KVUser@cqlsh:killrvideo>``` informing us we are **using** the **_killrvideo_** keyspace. Now we are ready to create our tables.
+Notice how the prompt displays ```KVUser@cqlsh:killrvideo>``` informing us we are **using** the **_killrvideo_** keyspace. Now we are ready to create our table.
 
-**✅ Step 2c. Create some tables**
+**✅ Step 2c. Create the _users_by_city_ table**
 
-At this point we can execute the commands to create some tables. Don't worry about the details of the commands just yet, we'll explain more in the workshop. For now, just copy/paste the following commands into your CQL console at the prompt.
+At this point we can execute a command to create the **_users_by_city_** table using the information provided during the workshop presenation. Just copy/paste the following command into your CQL console at the prompt.
 
-📘 **Commands to execute**
+📘 **Command to execute**
 
 ```
-// User credentials, keyed by email address so we can authenticate
-CREATE TABLE IF NOT EXISTS user_credentials (
-    email     text,
-    password  text,
-    userid    uuid,
-    PRIMARY KEY (email));
+// Users keyed by city
+CREATE TABLE IF NOT EXISTS users_by_city ( 
+	city text, 
+	last_name text, 
+	first_name text, 
+	address text, 
+	email text, 
+	PRIMARY KEY ((city), last_name, first_name, email));
+```
 
-// Users keyed by id
-CREATE TABLE IF NOT EXISTS users (
-    userid     uuid,
-    firstname  text,
-    lastname   text,
-    email      text,
-    created_date timestamp,
-    PRIMARY KEY (userid));
+Then **_DESCRIBE_** your keyspace tables to ensure it is there.
 
+📘 **Command to execute**
+
+```
+desc tables;
 ```
 
 📗 **Expected output**
 
-![Create tables](images/astra-use-cql-console-create-tables.png?raw=true)
+![Create users by city table](images/astra-use-cql-console-create-users-by-city.png?raw=true)
 
-**✅ Step 2d. Create some tables**
+Aaaand **BOOM**, you created a table in your database. That's it. Now, we'll move to the next section in the presentation and break down the method used to create a data model with Apache Cassandra.
 
-example insert statements
+## 3. Execute CRUD operations
+CRUD operations stand for create, read, update, and delete. Simply put, they are the basic types of commands you need to work with ANY database in order to maintain data for your applications.
+
+**✅ Step 3a. Create a couple more tables**
+
+We started by creating the **_users_by_city_** table earlier, but now we need to create some tables to support **user** and **video** comments per the "Art of Data Modeling" section of the presentation. Let's go ahead and do that now. Execute the following statements to create our tables.
+
+📘 **Commands to execute**
+
 ```
-INSERT INTO killrvideo.users (userid, created_date, firstname, lastname, email)
-  VALUES(77777777-7777-7777-7777-777777777777, toTimestamp(now()), 'Aleks', 'volochnev', 'av@datastax.com');
-INSERT INTO killrvideo.user_credentials (userid, email, password)
-  VALUES(77777777-7777-7777-7777-777777777777, 'av@datastax.com', 'C@ss@ndr@3v3rywh3r3');
+CREATE TABLE IF NOT EXISTS comments_by_user (
+    userid uuid,
+    commentid timeuuid,
+    videoid uuid,
+    comment text,
+    PRIMARY KEY ((userid), commentid)
+) WITH CLUSTERING ORDER BY (commentid DESC);
 
-INSERT INTO killrvideo.users (userid, created_date, firstname, lastname, email)
-  VALUES(44444444-4444-4444-4444-444444444444, toTimestamp(now()), 'David', 'Gilardi', 'dg@datastax.com');
-INSERT INTO killrvideo.user_credentials (userid, email, password)
-  VALUES(44444444-4444-4444-4444-444444444444, 'dg@datastax.com', 'H@t$0ff2C@ss@ndr@');
-
-INSERT INTO killrvideo.users (userid, created_date, firstname, lastname, email)
-  VALUES(22222222-2222-2222-2222-222222222222, toTimestamp(now()), 'Eric', 'Zietlow', 'ez@datastax.com');
-INSERT INTO killrvideo.user_credentials (userid, email, password)
-  VALUES(22222222-2222-2222-2222-222222222222, 'ez@datastax.com', 'C@ss@ndr@R0ck$');
-
-INSERT INTO killrvideo.users (userid, created_date, firstname, lastname, email)
-  VALUES(33333333-3333-3333-3333-333333333333, toTimestamp(now()), 'Cedrick', 'Lunven', 'cl@datastax.com');
-INSERT INTO killrvideo.user_credentials (userid, email, password)
-  VALUES(33333333-3333-3333-3333-333333333333, 'cl@datastax.com', 'Fr@nc3L0v3$C@ss@ndr@');
+CREATE TABLE IF NOT EXISTS comments_by_video (
+    videoid   uuid,
+    commentid timeuuid,
+    userid    uuid,
+    comment   text,
+    PRIMARY KEY ((videoid), commentid)
+) WITH CLUSTERING ORDER BY (commentid DESC);
 ```
+
+Then **_DESCRIBE_** your keyspace tables to ensure they are both there.
+
+📘 **Command to execute**
+
+```
+desc tables;
+```
+
+📗 **Expected output**
+
+![Create users by city table](images/astra-use-cql-console-create-tables.png?raw=true)
+
+**✅ Step 3b. (C)RUD = create = insert data**
+
+Our tables are in place so let's put some data in them. This is done with the **INSERT** statement. We'll start by inserting data into the **_comments_by_user_** table.
+
+📘 **Commands to execute**
+
+```
+// Comment for a given user
+INSERT INTO comments_by_user (
+  userid, //uuid: unique id for a user
+  commentid, //timeuuid: unique uuid + timestamp
+  videoid, //uuid: id for a given video
+  comment //text: the comment text
+)
+VALUES (
+  11111111-1111-1111-1111-111111111111, 
+  NOW(), 
+  12345678-1234-1111-1111-111111111111, 
+  'I so grew up in the 80''s'
+);
+
+// More comments for the same user for the same video
+INSERT INTO comments_by_user (userid, commentid, videoid, comment)
+VALUES (11111111-1111-1111-1111-111111111111, NOW(), 12345678-1234-1111-1111-111111111111, 'I keep watching this video');
+INSERT INTO comments_by_user (userid, commentid, videoid, comment)
+VALUES (11111111-1111-1111-1111-111111111111, NOW(), 12345678-1234-1111-1111-111111111111, 'Soo many comments for the same video');
+
+// A comment from another user for the same video
+INSERT INTO comments_by_user (userid, commentid, videoid, comment)
+VALUES (22222222-2222-2222-2222-222222222222, NOW(), 12345678-1234-1111-1111-111111111111, 'I really like this video too!');
+```
+
+_Note, we are using "fake" generated UUID's in this dataset. If you wanted to generate UUID's on the fly just use ```UUID()``` per the documentation [HERE](https://docs.datastax.com/en/cql-oss/3.3/cql/cql_reference/timeuuid_functions_r.html)_.
+
+Ok, let's **INSERT** more this time using the **_comments_by_video_** table.
+
+📘 **Commands to execute**
+
+```
+// Comment for a given video
+INSERT INTO comments_by_video (
+  videoid, //uuid: id for a given video
+  commentid, //timeuuid: unique uuid + timestamp
+  userid, //uuid: unique id for a user
+  comment //text: the comment text
+)
+VALUES (
+  12345678-1234-1111-1111-111111111111, 
+  NOW(), 
+  11111111-1111-1111-1111-111111111111, 
+  'This is such a cool video'
+);
+
+// More comments for the same video by different users
+INSERT INTO comments_by_video (videoid, commentid, userid, comment)
+VALUES(12345678-1234-1111-1111-111111111111, NOW(), 22222222-2222-2222-2222-222222222222, 'Suck a killr edit');
+INSERT INTO comments_by_video (videoid, commentid, userid, comment)
+VALUES(12345678-1234-1111-1111-111111111111, NOW(), 77777777-7777-7777-7777-777777777777, 'OMG that guy Patrick is on fleek!');
+
+// A comment for a different video from another user
+INSERT INTO comments_by_video (videoid, commentid, userid, comment)
+VALUES(08765309-1234-9999-9999-111111111111, NOW(), 55555555-5555-5555-5555-555555555555, 'Never thought I''d see a video about databases');
+```
+
+**✅ Step 3c. C(R)UD = read = read data**
+
+Now that we've inserted a set of data, let's take a look at how to read that data back out. This is done with a **SELECT** statement. In its simplist form we could just execute a statement like the following **_**cough_** **_**cough_**:
+```
+SELECT * FROM comments_by_user;
+```
+
+You may have noticed my coughing fit a moment ago. Even though you can execute a **SELECT** statement with no partition key definied this is NOT something you should do when using Apache Cassandra. We are doing it here for illustration purposes only and because our dataset only has a handful of values. Given the data we inserted earlier a more proper statement would be something like:
+```
+SELECT * FROM comments_by_user WHERE userid = 11111111-1111-1111-1111-111111111111;
+```
+
+The key is to ensure we are always selecting by some partition key at a minimum.
+
+Ok, so with that out of the way let's **READ** the data we _"created"_ earlier with our **INSERT** statements.
+
+📘 **Commands to execute**
+
+```
+// Read all data from the comments_by_user table
+SELECT * FROM comments_by_user;
+
+// Read all data from the comments_by_video table
+SELECT * FROM comments_by_video;
+```
+
+📗 **Expected output**
+
+![Select from tables](images/astra-use-cql-console-select-from-tables.png?raw=true)
+
+Once you execute the above **SELECT** statements you should see something like the expected output above. We have now **READ** the data we **INSERTED** earlier. Awesome job!
+
+_BTW, just a little extra for those who are interested. Since we used a [TIMEUUID](https://docs.datastax.com/en/cql-oss/3.3/cql/cql_reference/timeuuid_functions_r.html) type for our **commentid** field we can use the **dateOf()** function to determine the timestamp from the value. Check it out._
+
+```
+// Read all data from the comments_by_user table, 
+// convert commentid into a timestamp, and label the column "datetime"
+select userid, dateOf(commentid) as datetime, videoid, comment from comments_by_user;
+```
+
+
+**✅ Step 3d. CR(U)D = update = update data**
+
+
+**✅ Step 3e. CRU(D) = delete = remove data**
