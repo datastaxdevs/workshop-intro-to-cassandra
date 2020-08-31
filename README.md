@@ -152,12 +152,14 @@ desc tables;
 
 Aaaand **BOOM**, you created a table in your database. That's it. Now, we'll move to the next section in the presentation and break down the method used to create a data model with Apache Cassandra.
 
+[🏠 Back to Table of Contents](#table-of-contents)
+
 ## 3. Execute CRUD operations
 CRUD operations stand for create, read, update, and delete. Simply put, they are the basic types of commands you need to work with ANY database in order to maintain data for your applications.
 
 **✅ Step 3a. Create a couple more tables**
 
-We started by creating the **_users_by_city_** table earlier, but now we need to create some tables to support **user** and **video** comments per the "Art of Data Modeling" section of the presentation. Let's go ahead and do that now. Execute the following statements to create our tables.
+We started by creating the **_users_by_city_** table earlier, but now we need to create some tables to support **user** and **video** comments per the **_"Art of Data Modeling"_** section of the presentation. Let's go ahead and do that now. Execute the following statements to create our tables.
 
 📘 **Commands to execute**
 
@@ -246,13 +248,14 @@ VALUES (
 
 // More comments for the same video by different users
 INSERT INTO comments_by_video (videoid, commentid, userid, comment)
-VALUES(12345678-1234-1111-1111-111111111111, NOW(), 22222222-2222-2222-2222-222222222222, 'Suck a killr edit');
+VALUES(12345678-1234-1111-1111-111111111111, NOW(), 22222222-2222-2222-2222-222222222222, 'Such a killr edit');
+// Ignore the hardcoded value for "commentid" instead of NOW(), we'll get to that later.
 INSERT INTO comments_by_video (videoid, commentid, userid, comment)
-VALUES(12345678-1234-1111-1111-111111111111, NOW(), 77777777-7777-7777-7777-777777777777, 'OMG that guy Patrick is on fleek!');
+VALUES(12345678-1234-1111-1111-111111111111, 494a3f00-e966-11ea-84bf-83e48ffdc8ac, 77777777-7777-7777-7777-777777777777, 'OMG that guy Patrick is such a geek!');
 
 // A comment for a different video from another user
 INSERT INTO comments_by_video (videoid, commentid, userid, comment)
-VALUES(08765309-1234-9999-9999-111111111111, NOW(), 55555555-5555-5555-5555-555555555555, 'Never thought I''d see a video about databases');
+VALUES(08765309-1234-9999-9999-111111111111, NOW(), 55555555-5555-5555-5555-555555555555, 'Never thought I''d see a music video about databases');
 ```
 
 **✅ Step 3c. C(R)UD = read = read data**
@@ -267,7 +270,7 @@ You may have noticed my coughing fit a moment ago. Even though you can execute a
 SELECT * FROM comments_by_user WHERE userid = 11111111-1111-1111-1111-111111111111;
 ```
 
-The key is to ensure we are always selecting by some partition key at a minimum.
+The key is to ensure we are **always selecting by some partition key** at a minimum.
 
 Ok, so with that out of the way let's **READ** the data we _"created"_ earlier with our **INSERT** statements.
 
@@ -298,5 +301,78 @@ select userid, dateOf(commentid) as datetime, videoid, comment from comments_by_
 
 **✅ Step 3d. CR(U)D = update = update data**
 
+At this point we've **_CREATED_** and **_READ_** some data, but what happens when you want to change some existing data to some new value? That's where **UPDATE** comes into play.
+
+Let's take one of the records we created earlier and modify it. If you remember earlier we **_INSERTED_** the following record in the **comments_by_video** table.
+```
+INSERT INTO comments_by_video (
+  videoid, 
+  commentid, 
+  userid, 
+  comment
+)
+VALUES(
+  12345678-1234-1111-1111-111111111111, 
+  494a3f00-e966-11ea-84bf-83e48ffdc8ac, 
+  77777777-7777-7777-7777-777777777777, 
+  'OMG that guy Patrick is such a geek!'
+);
+```
+
+Let's also take a look at the **comments_by_video** table we created earlier. In order to **UPDATE** an existing record we need to know the primary key used to **CREATE** the record.
+```
+CREATE TABLE IF NOT EXISTS comments_by_video (
+    videoid   uuid,
+    commentid timeuuid,
+    userid    uuid,
+    comment   text,
+    PRIMARY KEY ((videoid), commentid)
+) WITH CLUSTERING ORDER BY (commentid DESC);
+```
+So looking at ```PRIMARY KEY ((videoid), commentid)``` both **videoid** and **commentid** are used to create a unique row. We'll need both to update our record. 
+
+_You may remember that I also glossed over the fact we used a hardcoded value for **commentid** when we created this record. This was done to simulate someone editing an existing comment for a video in our application. Imagine the UX for such a need. At the point a user clicks the "edit" button information for our **videoid** and **commentid** are provided in order to **UPDATE** the record._
+
+We have the information that we need for the update. With that, the command is easy.
+
+📘 **Commands to execute**
+
+```
+UPDATE comments_by_video 
+SET comment = 'OMG that guy Patrick is on fleek' 
+WHERE videoid = 12345678-1234-1111-1111-111111111111 AND commentid = 494a3f00-e966-11ea-84bf-83e48ffdc8ac;
+
+SELECT * FROM comments_by_video;
+```
+
+📗 **Expected output**
+
+![Update comments by video](images/astra-use-cql-console-update-comments-by-video.png?raw=true)
+
+That's it. All that's left now is to **DELETE** some data.
 
 **✅ Step 3e. CRU(D) = delete = remove data**
+
+The final operation from our **CRUD** acronym is **DELETE**. This is the operation we use when we want to remove data from the database. In Apache Cassandra you can **DELETE** from the cell level all the way up to the partition _(meaning I could remove a single column in a single row or I could remove a whole partition)_ using the same **DELETE** command.
+
+_Generally speaking, it's best to perform as few delete operations as possible on the largest amount of data. Think of it this way, if you want to delete ALL data in a table, don't delete each individual cell, just **TRUNCATE** the table. If you need to delete all the rows in a partition, don't delete each row, **DELETE** the partition and so on._
+
+For our purpose now let's **DELETE** the same row we were working with earlier.
+
+📘 **Commands to execute**
+
+```
+DELETE FROM comments_by_video 
+WHERE videoid = 12345678-1234-1111-1111-111111111111 AND commentid = 494a3f00-e966-11ea-84bf-83e48ffdc8ac;
+
+SELECT * FROM comments_by_video;
+```
+
+📗 **Expected output**
+
+![Delete from comments by video](images/astra-use-cql-console-delete-from-comments-by-video.png?raw=true)
+
+Notice the row is now removed from the comments_by_video table, it's as simple as that.
+
+## 4. Wrapping up
+We've just scratched the surface of what you can do using DataStax Astra with Apache Cassandra. Go take a look at [DataStax for Developers](https://www.datastax.com/dev) to see what else is possible. There's plenty to dig into!
