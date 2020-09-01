@@ -1,9 +1,16 @@
-🎓🔥 Welcome to the Intro to Cassandra for Developers using DataStax Astra 🔥🎓
-======================================================
+## 🎓🔥 Intro to Cassandra for Developers using DataStax Astra 🔥🎓
 
-In this repository, you'll find everything you need for this workshop:
+Welcome to 'Intro to Cassandra for Developers' workshop! In this two-hours workshop Developer Advocates team of DataStax shows the most important fundamentals and basics of the powerful distributed NoSQL database Apache Cassandra. Using cloud service Astra, Cassandra-as-a-Service delivered by DataStax, we will cover the very first steps for every developer who wants to try to learn a new database: tables, CRUD operations etc. 
+
+Doesn't matter if you join our workshop live or you prefer to do on your own pace, we have you covered. In this repository, you'll find everything you need for this workshop:
+
 - Materials used during presentations
 - Hands-on exercises
+- Workshop videos
+  - [First workshop](https://youtu.be/Zf1TTwD4ibQ) [NAM Time]
+  - [Second workshop](https://youtu.be/pVLN6FsUeyo) [IST Time]
+- [Discord chat](https://bit.ly/cassandra-workshop)
+- [Questions and Answers](https://community.datastax.com/)
 
 ## Table of Contents
 
@@ -17,7 +24,7 @@ In this repository, you'll find everything you need for this workshop:
 
 ## 1. Create your Astra instance
 
-`ASTRA` service is available at url [https://astra.datastax.com](https://astra.datastax.com/)
+`ASTRA` service is available at url [https://astra.datastax.com](https://astra.datastax.com/). `ASTRA` is the simplest way to run Cassandra with zero operations at all - just push the button and get your cluster. `Astra` offers **10 Gb Tier Free Forever** and you **don't need a credit card** or anything to sign-up and use it. 
 
 **✅ Step 1a. Register (if needed) and Sign In to Astra** : You can use your `Github`, `Google` accounts or register with an `email`
 
