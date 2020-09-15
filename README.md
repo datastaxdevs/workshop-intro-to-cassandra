@@ -10,6 +10,7 @@ It doesn't matter if you join our workshop live or you prefer to do at your own 
   - [First workshop](https://youtu.be/Zf1TTwD4ibQ) [NAM Time]
   - [Second workshop](https://youtu.be/pVLN6FsUeyo) [IST Time]
 - [Discord chat](https://bit.ly/cassandra-workshop)
+- [Discord chat **PUBLIC SECTOR**](https://discord.gg/YXZywC6) (if you're not sure what this means use the other **Discord** link above this)
 - [Questions and Answers](https://community.datastax.com/)
 
 ## Table of Contents
