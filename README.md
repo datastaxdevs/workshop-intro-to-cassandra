@@ -85,9 +85,11 @@ Ok, now that you have a database created the next step is to create a table to w
 
 In the Summary screen for your database, select **_CQL Console_** from the top menu in the main window. This will take you to the CQL Console with a login prompt.
 
-![my-pic](https://github.com/datastaxdevs/shared-assets/blob/master/astra/cqlconsole-1000.png?raw=true)
+<img width="1000" alt="Screenshot 2020-09-30 at 13 51 55" src="https://user-images.githubusercontent.com/20337262/94687448-2aff1c00-0324-11eb-8aa6-516185d01ce8.png">
 
 Enter in the credentials we used earlier to create the **_killrvideo_** database. If you followed the instructions earlier this should be **_KVUser_** and **_KVPassword1_**. If you already created the **_killrvideo_** database at some point before this workshop and used different credentials, just use those instead.
+
+<img width="1253" alt="Screenshot 2020-09-30 at 13 53 43" src="https://user-images.githubusercontent.com/20337262/94687593-613c9b80-0324-11eb-8db8-35a76a786b18.png">
 
 
 **✅ Step 2b. Describe keyspaces and USE killrvideo**
@@ -104,7 +106,7 @@ _"desc" is short for "describe", either is valid_
 
 📗 **Expected output**
 
-![Desc keyspaces](images/astra-use-cql-console-desc-keyspace.png?raw=true)
+<img width="1000" alt="Screenshot 2020-09-30 at 13 54 55" src="https://user-images.githubusercontent.com/20337262/94687725-8cbf8600-0324-11eb-83b0-fbd3d7fbdadc.png">
 
 Depending on your setup you might see a different set of keyspaces then in the image. The one we care about for now is **_killrvideo_**. From here, execute the **_USE_** command with the **_killrvideo_** keyspace to tell the database our context is within **_killrvideo_**.
 
@@ -115,7 +117,7 @@ use killrvideo;
 
 📗 **Expected output**
 
-![Use keyspaces](images/astra-use-cql-console-use-killrvideo.png?raw=true)
+<img width="1000" alt="Screenshot 2020-09-30 at 13 55 56" src="https://user-images.githubusercontent.com/20337262/94687832-b082cc00-0324-11eb-885a-d44e127cf9be.png">
 
 Notice how the prompt displays ```KVUser@cqlsh:killrvideo>``` informing us we are **using** the **_killrvideo_** keyspace. Now we are ready to create our table.
 
@@ -146,7 +148,7 @@ desc tables;
 
 📗 **Expected output**
 
-![Create users by city table](images/astra-use-cql-console-create-users-by-city.png?raw=true)
+<img width="1000" alt="Screenshot 2020-09-30 at 13 57 32" src="https://user-images.githubusercontent.com/20337262/94687995-e88a0f00-0324-11eb-8c7a-08c3dee00eaf.png">
 
 Aaaand **BOOM**, you created a table in your database. That's it. Now, we'll move to the next section in the presentation and break down the method used to create a data model with Apache Cassandra.
 
