@@ -56,7 +56,7 @@ You will find below which values to enter for each field.
 
 - **Fill in the Database User name** - `KVUser`. Note the user name is case-sensitive. Please use the case we suggest here.
 
-- **Fill in the password** - `KVPassword`. Fill in both the password and the confirmation fields. Note that the password is also case-sensitive. Please use the case we suggest here.
+- **Fill in the password** - `KVPassword1`. Fill in both the password and the confirmation fields. Note that the password is also case-sensitive. Please use the case we suggest here.
 
 - **Create the database**. Review all the fields to make sure they are as shown, and click the `Create Database` button.
 
@@ -83,19 +83,12 @@ Ok, now that you have a database created the next step is to create a table to w
 
 **✅ Step 2a. Navigate to the CQL Console and login to the database**
 
-Go back to the Astra UI we left earlier and click on the **_CQL Console_** button in the top right corner of the screen.
+In the Summary screen for your database, select **_CQL Console_** from the top menu in the main window. This will take you to the CQL Console with a login prompt.
 
-![CQL Console Button](images/astra-use-cql-console.png?raw=true)
+![my-pic](https://github.com/datastaxdevs/shared-assets/blob/master/astra/cqlconsole-1000.png?raw=true)
 
-This will open up a CQL console to use with your Astra database and present you with a login prompt.
+Enter in the credentials we used earlier to create the **_killrvideo_** database. If you followed the instructions earlier this should be **_KVUser_** and **_KVPassword1_**. If you already created the **_killrvideo_** database at some point before this workshop and used different credentials, just use those instead.
 
-![CQL Console](images/astra-view-cql-console.png?raw=true)
-
-Enter in the credentials we used earlier to create the **_killrvideo_** database. If you followed the instructions earlier this should be **_KVUser_** and **_KVPassword_**. If you already created the **_killrvideo_** database at some point before this workshop and used different credentials, just use those instead.
-
-At this point you should see something like the following:
-
-![CQL Console logged in](images/astra-login-cql-console.png?raw=true)
 
 **✅ Step 2b. Describe keyspaces and USE killrvideo**
 
