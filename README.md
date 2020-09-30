@@ -191,7 +191,7 @@ desc tables;
 
 📗 **Expected output**
 
-![Create users by city table](images/astra-use-cql-console-create-tables.png?raw=true)
+<img width="1000" alt="Screenshot 2020-09-30 at 13 59 50" src="https://user-images.githubusercontent.com/20337262/94688257-3bfc5d00-0325-11eb-9ec6-40d2596fb71e.png">
 
 **✅ Step 3b. (C)RUD = create = insert data**
 
@@ -286,7 +286,7 @@ SELECT * FROM comments_by_video;
 
 📗 **Expected output**
 
-![Select from tables](images/astra-use-cql-console-select-from-tables.png?raw=true)
+<img width="1000" alt="Screenshot 2020-09-30 at 14 03 18" src="https://user-images.githubusercontent.com/20337262/94688606-bb8a2c00-0325-11eb-8124-5c4d9ac0d4fc.png">
 
 Once you execute the above **SELECT** statements you should see something like the expected output above. We have now **READ** the data we **INSERTED** earlier. Awesome job!
 
@@ -347,7 +347,7 @@ SELECT * FROM comments_by_video;
 
 📗 **Expected output**
 
-![Update comments by video](images/astra-use-cql-console-update-comments-by-video.png?raw=true)
+<img width="1000" alt="Screenshot 2020-09-30 at 14 05 21" src="https://user-images.githubusercontent.com/20337262/94688803-0015c780-0326-11eb-96e3-b76fb59a9d11.png">
 
 That's it. All that's left now is to **DELETE** some data.
 
@@ -370,7 +370,7 @@ SELECT * FROM comments_by_video;
 
 📗 **Expected output**
 
-![Delete from comments by video](images/astra-use-cql-console-delete-from-comments-by-video.png?raw=true)
+<img width="1000" alt="Screenshot 2020-09-30 at 14 07 05" src="https://user-images.githubusercontent.com/20337262/94689019-3eab8200-0326-11eb-86b9-010c130a49c3.png">
 
 Notice the row is now removed from the comments_by_video table, it's as simple as that.
 
