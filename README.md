@@ -27,7 +27,9 @@ It doesn't matter if you join our workshop live or you prefer to do at your own 
 
 `ASTRA` service is available at url [https://astra.datastax.com](https://dtsx.io/workshop). `ASTRA` is the simplest way to run Cassandra with zero operations at all - just push the button and get your cluster. `Astra` offers **10 Gb Tier Free Forever** and you **don't need a credit card** or anything to sign-up and use it. 
 
-**✅ Step 1a. Register (if needed) and Sign In to Astra** : You can use your `Github`, `Google` accounts or register with an `email`
+**✅ Step 1a. Register (if needed) and Sign In to Astra** : You can use your `Github`, `Google` accounts or register with an `email`.
+
+Make sure to chose a password with minimum 8 characters, containing upper and lowercase letters, at least one number and special character
 
 - [Registration Page](https://dtsx.io/workshop)
 
@@ -41,6 +43,8 @@ It doesn't matter if you join our workshop live or you prefer to do at your own 
 **✅ Step 1b. Choose the free plan and select your region**
 
 ![my-pic](https://github.com/datastaxdevs/shared-assets/blob/master/astra/choose-a-plan-1000-annotated.png?raw=true)
+
+- **Select the free tier**: 5GB storage, no obligation
 
 - **Select the region**: This is the region where your database will reside physically (choose one close to you or your users). For people in EMEA please use `europe-west-1` idea here is to reduce latency.
 
