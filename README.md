@@ -38,16 +38,17 @@ It doesn't matter if you join our workshop live or you prefer to do at your own 
 ![Login Image](images/astra-create-login.png?raw=true)
 
 
-**✅ Step 1b. Fill the Create New Database Form**
+**✅ Step 1b. Choose the free plan and select your region**
 
-As you don't have have any instances the login will route through the instance creation form. You will find below which values to enter for each field.
-
-![Database Form](images/astra-create-2.png?raw=true)
-
-
-- **Set the Compute Size**: For the work we are doing please use `Free tier`. You instance will be there forever, free of charge
+![my-pic](https://github.com/datastaxdevs/shared-assets/blob/master/astra/choose-a-plan-1000-annotated.png?raw=true)
 
 - **Select the region**: This is the region where your database will reside physically (choose one close to you or your users). For people in EMEA please use `europe-west-1` idea here is to reduce latency.
+
+**✅ Step 1c. Configure and create your database**
+
+You will find below which values to enter for each field.
+
+![my-pic](https://github.com/datastaxdevs/shared-assets/blob/master/astra/create-and-configure-annotated-1000.png?raw=true)
 
 - **Fill in the database name** - `killrvideocluster.` While Astra allows you to fill in these fields with values of your own choosing, please follow our reccomendations to make the rest of the exercises easier to follow. If you don't, you are on your own! :)
 
@@ -57,25 +58,21 @@ As you don't have have any instances the login will route through the instance c
 
 - **Fill in the password** - `KVPassword`. Fill in both the password and the confirmation fields. Note that the password is also case-sensitive. Please use the case we suggest here.
 
-- **Launch the database**. Review all the fields to make sure they are as shown, and click the Launch Database button.
+- **Create the database**. Review all the fields to make sure they are as shown, and click the `Create Database` button.
 
+You will see your new database `pending` in the Dashboard.
 
-![Launch Database](images/astra-create-3.png?raw=true)
+![my-pic](https://github.com/datastaxdevs/shared-assets/blob/master/astra/dashboard-pending-1000.png?raw=true)
 
+The status will change to `Active` when the database is ready, this will only take 2-3 minutes. You will also receive an email address when it is ready.
 
-**✅ Step 1c. View your Database and connect**
+**✅ Step 1d. View your Database and connect**
 
-View your database. It should only take ```2-3 minutes``` for your database to spin up, however, it could take up to around 10 minutes in some cases. You will receive an email once the database is ready.
+Let’s review the database you have configured. Select your new database in the lefthand column.
 
-![View Database](images/astra-create-4.png?raw=true)
+Now you can select to connect, to park the database, to access CQL console or Studio.
 
-
-Once Database is ready you should see the following home page:
-
-![Home Page](images/astra-create-5.png?raw=true)
-
-
-Let’s review the database you have configured. In the box on the left side of the window, you can see the database and keyspace name metadata. The box on the right describes the size and location of your database along with your estimated cost. Once Astra initializes the database completely, the left box will have connection details. Once you are at this point you have a database ready to go. We'll start using it in the next section.
+![my-pic](https://github.com/datastaxdevs/shared-assets/blob/master/astra/summary-1000.png?raw=true)
 
 
 [🏠 Back to Table of Contents](#table-of-contents)
