@@ -22,7 +22,7 @@ It doesn't matter if you join our workshop live or you prefer to do at your own 
 
 ## 1. Create your Astra instance
 
-`ASTRA` service is available at url [https://astra.datastax.com](https://dtsx.io/workshop). `ASTRA` is the simplest way to run Cassandra with zero operations at all - just push the button and get your cluster. `Astra` offers **5 Gb Tier Free Forever** and you **don't need a credit card** or anything to sign-up and use it. 
+`ASTRA` service is available at url [https://astra.datastax.com](https://dtsx.io/workshop). `ASTRA` is the simplest way to run Cassandra with zero operations at all - just push the button and get your cluster. `ASTRA` offers a **25 Gb Serverless Tier for Free** and you **don't need a credit card** or anything to sign-up and use it. 
 
 **✅ Step 1a. Register (if needed) and Sign In to Astra** : You can use your `Github`, `Google` accounts or register with an `email`.
 
@@ -57,13 +57,13 @@ You will see your new database `pending` in the Dashboard.
 
 ![my-pic](https://github.com/datastaxdevs/shared-assets/blob/master/astra/dashboard-pending-1000-update.png?raw=true)
 
-The status will change to `Active` when the database is ready, this will only take 2-3 minutes. You will also receive an email address when it is ready.
+The status will change to `Active` when the database is ready, this will only take 2-3 minutes. You will also receive an email when it is ready.
 
 **✅ Step 1c. View your Database and connect**
 
 Let’s review the database you have configured. Select your new database in the lefthand column.
 
-Now you can select to connect, to park the database, to access CQL console or Studio.
+You can use this page to check usage status, get connection credentials, and access the CQL console.
 
 ![my-pic](https://github.com/datastaxdevs/shared-assets/blob/master/astra/summary-1000-update.png?raw=true)
 
