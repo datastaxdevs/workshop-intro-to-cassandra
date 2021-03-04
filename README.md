@@ -43,15 +43,13 @@ Follow this [guide](https://docs.datastax.com/en/astra/docs/creating-your-astra-
 
 - **Select the pay as you go option**: Includes $25 monthly credit - no credit card needed to set up.
 
-**✅ Step 1c. Configure and create your database**
-
 You will find below which values to enter for each field.
 
-- **Fill in the database name** - `killrvideocluster.` While Astra allows you to fill in these fields with values of your own choosing, please follow our recommendations to make the rest of the exercises easier to follow. If you don't, you are on your own! :)
+- **For the database name** - `killrvideocluster.` While Astra allows you to fill in these fields with values of your own choosing, please follow our recommendations to make the rest of the exercises easier to follow. If you don't, you are on your own! :)
 
-- **Fill in the keyspace name** - `killrvideo`. It's really important that you use the name killrvideo (with no 'e' in "killr") here in order for all the exercises to work well. We realize you want to be creative, but please just roll with this one today.
+- **For the keyspace name** - `killrvideo`. It's really important that you use the name killrvideo (with no 'e' in "killr") here in order for all the exercises to work well. We realize you want to be creative, but please just roll with this one today.
 
-- **Select the region**: This is the region where your database will reside physically (choose one close to you or your users). For people in EMEA please use `europe-west-1` idea here is to reduce latency.
+- **For the region**: This is the region where your database will reside physically (choose one close to you or your users). For people in EMEA please use `europe-west-1` idea here is to reduce latency.
 
 - **Create the database**. Review all the fields to make sure they are as shown, and click the `Create Database` button.
 
@@ -61,7 +59,7 @@ You will see your new database `pending` in the Dashboard.
 
 The status will change to `Active` when the database is ready, this will only take 2-3 minutes. You will also receive an email address when it is ready.
 
-**✅ Step 1d. View your Database and connect**
+**✅ Step 1c. View your Database and connect**
 
 Let’s review the database you have configured. Select your new database in the lefthand column.
 
