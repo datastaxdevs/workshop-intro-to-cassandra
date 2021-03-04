@@ -37,27 +37,21 @@ Make sure to chose a password with minimum 8 characters, containing upper and lo
 ![Login Image](images/astra-create-login.png?raw=true)
 
 
-**✅ Step 1b. Choose the free plan and select your region**
+**✅ Step 1b. Create a "pay as you go" plan**
 
-![my-pic](https://github.com/datastaxdevs/shared-assets/blob/master/astra/choose-a-plan-1000-annotated.png?raw=true)
+Follow this [guide](https://docs.datastax.com/en/astra/docs/creating-your-astra-database.html), to set up a pay as you go database with a free $25 monthly credit.
 
-- **Select the free tier**: 5GB storage, no obligation
-
-- **Select the region**: This is the region where your database will reside physically (choose one close to you or your users). For people in EMEA please use `europe-west-1` idea here is to reduce latency.
+- **Select the pay as you go option**: Includes $25 monthly credit - no credit card needed to set up.
 
 **✅ Step 1c. Configure and create your database**
 
 You will find below which values to enter for each field.
 
-![my-pic](https://github.com/datastaxdevs/shared-assets/blob/master/astra/create-and-configure-annotated-1000.png?raw=true)
-
-- **Fill in the database name** - `killrvideocluster.` While Astra allows you to fill in these fields with values of your own choosing, please follow our reccomendations to make the rest of the exercises easier to follow. If you don't, you are on your own! :)
+- **Fill in the database name** - `killrvideocluster.` While Astra allows you to fill in these fields with values of your own choosing, please follow our recommendations to make the rest of the exercises easier to follow. If you don't, you are on your own! :)
 
 - **Fill in the keyspace name** - `killrvideo`. It's really important that you use the name killrvideo (with no 'e' in "killr") here in order for all the exercises to work well. We realize you want to be creative, but please just roll with this one today.
 
-- **Fill in the Database User name** - `KVUser`. Note the user name is case-sensitive. Please use the case we suggest here.
-
-- **Fill in the password** - `KVPassword1`. Fill in both the password and the confirmation fields. Note that the password is also case-sensitive. Please use the case we suggest here.
+- **Select the region**: This is the region where your database will reside physically (choose one close to you or your users). For people in EMEA please use `europe-west-1` idea here is to reduce latency.
 
 - **Create the database**. Review all the fields to make sure they are as shown, and click the `Create Database` button.
 
@@ -84,18 +78,12 @@ Ok, now that you have a database created the next step is to create a table to w
 
 **✅ Step 2a. Navigate to the CQL Console and login to the database**
 
-In the Summary screen for your database, select **_CQL Console_** from the top menu in the main window. This will take you to the CQL Console with a login prompt.
-
-<img width="1000" alt="Screenshot 2020-09-30 at 13 51 55" src="https://user-images.githubusercontent.com/20337262/94687448-2aff1c00-0324-11eb-8aa6-516185d01ce8.png">
-
-Enter in the credentials we used earlier to create the **_killrvideo_** database. If you followed the instructions earlier this should be **_KVUser_** and **_KVPassword1_**. If you already created the **_killrvideo_** database at some point before this workshop and used different credentials, just use those instead.
-
-<img width="1253" alt="Screenshot 2020-09-30 at 13 53 43" src="https://user-images.githubusercontent.com/20337262/94687593-613c9b80-0324-11eb-8db8-35a76a786b18.png">
+In the Summary screen for your database, select **_CQL Console_** from the top menu in the main window. This will take you to the CQL Console and automatically log you in.
 
 
 **✅ Step 2b. Describe keyspaces and USE killrvideo**
 
-Ok, you're logged in, and now we're ready to rock. Creating tables is quite easy, but before we create one we need to tell the database which keyspace we are working with.
+Ok, now we're ready to rock. Creating tables is quite easy, but before we create one we need to tell the database which keyspace we are working with.
 
 First, let's **_DESCRIBE_** all of the keyspaces that are in the database. This will give us a list of the available keyspaces.
 
