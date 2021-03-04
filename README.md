@@ -55,7 +55,7 @@ You will find below which values to enter for each field.
 
 You will see your new database `pending` in the Dashboard.
 
-![my-pic](https://github.com/datastaxdevs/shared-assets/blob/master/astra/dashboard-pending-1000.png?raw=true)
+![my-pic](https://github.com/datastaxdevs/shared-assets/blob/master/astra/dashboard-pending-1000-update.png?raw=true)
 
 The status will change to `Active` when the database is ready, this will only take 2-3 minutes. You will also receive an email address when it is ready.
 
@@ -65,7 +65,7 @@ Let’s review the database you have configured. Select your new database in the
 
 Now you can select to connect, to park the database, to access CQL console or Studio.
 
-![my-pic](https://github.com/datastaxdevs/shared-assets/blob/master/astra/summary-1000.png?raw=true)
+![my-pic](https://github.com/datastaxdevs/shared-assets/blob/master/astra/summary-1000-update.png?raw=true)
 
 
 [🏠 Back to Table of Contents](#table-of-contents)
