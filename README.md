@@ -49,7 +49,9 @@ You will find below which values to enter for each field.
 
 - **For the keyspace name** - `killrvideo`. It's really important that you use the name killrvideo (with no 'e' in "killr") here in order for all the exercises to work well. We realize you want to be creative, but please just roll with this one today.
 
-- **For the region**: This is the region where your database will reside physically (choose one close to you or your users). For people in EMEA please use `europe-west-1` idea here is to reduce latency.
+_You can technically use whatever you want and update the queries to reflect the keyspace. This is really to get you on a happy path for the first run._
+
+- **For provider and region**: Choose a provider (either GCP or AWS). Region is where your database will reside physically (choose one close to you or your users).
 
 - **Create the database**. Review all the fields to make sure they are as shown, and click the `Create Database` button.
 
