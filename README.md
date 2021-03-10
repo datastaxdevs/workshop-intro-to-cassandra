@@ -338,3 +338,12 @@ Notice the row is now removed from the comments_by_video table, it's as simple a
 
 ## 4. Wrapping up
 We've just scratched the surface of what you can do using DataStax Astra with Apache Cassandra. Go take a look at [DataStax for Developers](https://www.datastax.com/dev) to see what else is possible. There's plenty to dig into!
+
+## Homework
+Complete the following short courses on [DataStax for Developers](https://www.datastax.com/dev) and [submit](https://github.com/DataStax-Academy/Intro-to-Cassandra-for-Developers/issues) a screenshot of your completion for a community badge!
+
+[Cassandra Query Language](https://www.datastax.com/dev/scenario/try-it-out-cassandra-query-language-cql)
+
+[Cassandra Data Modeling](https://www.datastax.com/node/3272)
+
+[Submit Homework](https://github.com/DataStax-Academy/Intro-to-Cassandra-for-Developers/issues)
