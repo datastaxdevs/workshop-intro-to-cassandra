@@ -6,7 +6,7 @@ It doesn't matter if you join our workshop live or you prefer to do at your own 
 
 - Materials used during presentations
 - Hands-on exercises
-- [Workshop video](https://www.youtube.com/watch?v=pVLN6FsUeyo)
+- [Workshop video](https://www.youtube.com/watch?v=VaLwHqAHNtE)
 - [Discord chat](https://bit.ly/cassandra-workshop)
 - [Questions and Answers](https://community.datastax.com/)
 
