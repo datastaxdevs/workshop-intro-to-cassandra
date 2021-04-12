@@ -8,6 +8,7 @@ assignees: HadesArchitect
 ---
 
 **Name:** <NAME>
+**Email:** <email>
 **Linkedin Profile:** <LINK>
 
 Attach the homework screenshots below for both step II and step III:
