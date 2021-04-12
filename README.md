@@ -14,9 +14,10 @@ It doesn't matter if you join our workshop live or you prefer to do at your own 
 
 To complete the workshop and get verified badge, follow these simple steps:
 
-1. Complete the workshop practice as described below and make the screenshot of the last step ("Execute CRUD")
-2. Complete the following short course: [Cassandra Data Modeling](https://www.datastax.com/node/3272) and make the screenshot of the "Congratulations" page.
-3. [Submit the Homework](https://github.com/DataStax-Academy/Intro-to-Cassandra-for-Developers/issues/new?assignees=HadesArchitect&labels=homework%2C+wait+for+review&template=homework.md&title=%5BHW%5D+%3CNAME%3E) attaching the screenshots.
+1. Watch the workshop live or recorded.
+2. Complete the workshop practice as described below and make the screenshot of the last step ("Execute CRUD").
+3. Complete the following short course: [Cassandra Data Modeling](https://www.datastax.com/node/3272) and make the screenshot of the "Congratulations" page.
+4. [Submit the Homework](https://github.com/DataStax-Academy/Intro-to-Cassandra-for-Developers/issues/new?assignees=HadesArchitect&labels=homework%2C+wait+for+review&template=homework.md&title=%5BHW%5D+%3CNAME%3E) attaching the screenshots.
 
 ## Table of Contents
 
