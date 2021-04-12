@@ -10,6 +10,14 @@ It doesn't matter if you join our workshop live or you prefer to do at your own 
 - [Discord chat](https://bit.ly/cassandra-workshop)
 - [Questions and Answers](https://community.datastax.com/)
 
+## Homework
+
+To complete the workshop and get verified badge, follow these simple steps:
+
+1. Complete the workshop practice as described below and make the screenshot of the last step ("Execute CRUD")
+2. Complete the following short course: [Cassandra Data Modeling](https://www.datastax.com/node/3272) and make the screenshot of the "Congratulations" page.
+3. [Submit the Homework](https://github.com/DataStax-Academy/Intro-to-Cassandra-for-Developers/issues/new?assignees=HadesArchitect&labels=homework%2C+wait+for+review&template=homework.md&title=%5BHW%5D+%3CNAME%3E) attaching the screenshots.
+
 ## Table of Contents
 
 | Title  | Description
@@ -339,11 +347,6 @@ Notice the row is now removed from the comments_by_video table, it's as simple a
 ## 4. Wrapping up
 We've just scratched the surface of what you can do using DataStax Astra with Apache Cassandra. Go take a look at [DataStax for Developers](https://www.datastax.com/dev) to see what else is possible. There's plenty to dig into!
 
-## Homework
-Complete the following short courses on [DataStax for Developers](https://www.datastax.com/dev) and [submit](https://github.com/DataStax-Academy/Intro-to-Cassandra-for-Developers/issues) a screenshot of your completion for a community badge!
+# Done?
 
-[Cassandra Query Language](https://www.datastax.com/dev/scenario/try-it-out-cassandra-query-language-cql)
-
-[Cassandra Data Modeling](https://www.datastax.com/node/3272)
-
-[Submit Homework](https://github.com/DataStax-Academy/Intro-to-Cassandra-for-Developers/issues)
+Don't forget to submit your homework to get verified "upgrade complete" badge! 
