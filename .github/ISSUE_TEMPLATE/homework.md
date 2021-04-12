@@ -10,7 +10,7 @@ assignees: HadesArchitect
 **Name:** <NAME>
 **Linkedin Profile:** <LINK>
 
-Attach the homework screenshots below for both step I and step II:
+Attach the homework screenshots below for both step II and step III:
 -----------------------------------------
 
 <SCREENSHOT>
