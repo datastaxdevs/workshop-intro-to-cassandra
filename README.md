@@ -1,6 +1,6 @@
-## 🎓🔥 Intro to Cassandra for Developers using DataStax Astra 🔥🎓
+## 🎓🔥 Intro to Cassandra for Developers using DataStax Astra DB 🔥🎓
 
-Welcome to the 'Intro to Cassandra for Developers' workshop! In this two-hour workshop, the Developer Advocate team of DataStax shows the most important fundamentals and basics of the powerful distributed NoSQL database Apache Cassandra. Using Astra, the cloud based Cassandra-as-a-Service platform delivered by DataStax, we will cover the very first steps for every developer who wants to try to learn a new database: creating tables and CRUD operations. 
+Welcome to the 'Intro to Cassandra for Developers' workshop! In this two-hour workshop, the Developer Advocate team of DataStax shows the most important fundamentals and basics of the powerful distributed NoSQL database Apache Cassandra. Using Astra DB, the cloud based Cassandra-as-a-Service platform delivered by DataStax, we will cover the very first steps for every developer who wants to try to learn a new database: creating tables and CRUD operations. 
 
 It doesn't matter if you join our workshop live or you prefer to do at your own pace, we have you covered. In this repository, you'll find everything you need for this workshop:
 
@@ -24,12 +24,12 @@ To complete the workshop and get verified badge, follow these simple steps:
 | Title  | Description
 |---|---|
 | **Slide deck** | [Slide deck for the workshop](slides/Presentation.pdf) |
-| **1. Create your Astra instance** | [Create your Astra instance](#1-create-your-astra-instance) |
+| **1. Create your Astra Db instance** | [Create your Astra Db instance](#1-create-your-astra-db-instance) |
 | **2. Create a table** | [Create a table](#2-create-a-table) |
 | **3. Execute CRUD (Create, Read, Update, Delete) operations** | [Execute CRUD operations](#3-execute-crud-operations) |
 
 
-## 1. Create your Astra instance
+## 1. Create your Astra DB instance
 
 `ASTRA` service is available at url [https://astra.datastax.com](http://dtsx.io/intro-to-cassandra). `ASTRA` is the simplest way to run Cassandra with zero operations at all - just push the button and get your cluster. No credit card required, $25.00 USD credit every month, roughly 5M writes, 30M reads, 40GB storage monthly - sufficient to run small production workloads.
 
@@ -346,7 +346,7 @@ SELECT * FROM comments_by_video;
 Notice the row is now removed from the comments_by_video table, it's as simple as that.
 
 ## 4. Wrapping up
-We've just scratched the surface of what you can do using DataStax Astra with Apache Cassandra. Go take a look at [DataStax for Developers](https://www.datastax.com/dev) to see what else is possible. There's plenty to dig into!
+We've just scratched the surface of what you can do using DataStax Astra DB with Apache Cassandra. Go take a look at [DataStax for Developers](https://www.datastax.com/dev) to see what else is possible. There's plenty to dig into!
 
 # Done?
 
