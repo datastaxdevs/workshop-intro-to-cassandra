@@ -31,7 +31,7 @@ To complete the workshop and get verified badge, follow these simple steps:
 
 ## 1. Create your Astra DB instance
 
-`ASTRA` service is available at url [https://astra.datastax.com](http://dtsx.io/astraDB-618). `ASTRA` is the simplest way to run Cassandra with zero operations at all - just push the button and get your cluster. No credit card required, $25.00 USD credit every month, roughly 5M writes, 30M reads, 40GB storage monthly - sufficient to run small production workloads.
+`ASTRA` service is available at url [https://astra.datastax.com](https://astra.dev/cassandra-course). `ASTRA` is the simplest way to run Cassandra with zero operations at all - just push the button and get your cluster. No credit card required, $25.00 USD credit every month, roughly 5M writes, 30M reads, 40GB storage monthly - sufficient to run small production workloads.
 
 **✅ Step 1a. Register (if needed) and Sign In to Astra** : You can use your `Github`, `Google` accounts or register with an `email`.
 
