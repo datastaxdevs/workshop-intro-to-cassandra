@@ -62,6 +62,11 @@ Ok, now that you have a database created the next step is to create a table to w
 
 In the Summary screen for your database, select **_CQL Console_** from the top menu in the main window. This will take you to the CQL Console and automatically log you in.
 
+<details>
+    <summary>Show me! </summary>
+    <img src="images/astra-cql-console.gif" />
+</details>
+
 
 **✅ Step 2b. Describe keyspaces and USE killrvideo**
 
