@@ -31,17 +31,17 @@ To complete the workshop and get verified badge, follow these simple steps:
 
 ## 1. Create your Astra DB instance
 
-`ASTRA` service is available at url [https://astra.datastax.com](https://astra.dev/cassandra-course). `ASTRA` is the simplest way to run Cassandra with zero operations at all - just push the button and get your cluster. No credit card required, $25.00 USD credit every month, roughly 5M writes, 30M reads, 40GB storage monthly - sufficient to run small production workloads.
+`ASTRA` service is available at url [https://astra.datastax.com](https://astra.dev/8-10). `ASTRA` is the simplest way to run Cassandra with zero operations at all - just push the button and get your cluster. No credit card required, $25.00 USD credit every month, roughly 5M writes, 30M reads, 40GB storage monthly - sufficient to run small production workloads.
 
 **✅ Step 1a. Register (if needed) and Sign In to Astra** : You can use your `Github`, `Google` accounts or register with an `email`.
 
 Make sure to chose a password with minimum 8 characters, containing upper and lowercase letters, at least one number and special character
 
-- [Registration Page](http://dtsx.io/intro-to-cassandra)
+- [Registration Page](https://astra.dev/8-10)
 
 ![Registration Image](images/astra-create-register.png?raw=true)
 
-- [Authentication Page](http://dtsx.io/intro-to-cassandra)
+- [Authentication Page](https://astra.dev/8-10)
 
 ![Login Image](images/astra-create-login.png?raw=true)
 
@@ -78,7 +78,7 @@ First, let's **_DESCRIBE_** all of the keyspaces that are in the database. This 
 ```
 desc KEYSPACES;
 ```
-_"desc" is short for "describe", either is valid_
+_"desc" is short for "describe", either is valid._
 
 📗 **Expected output**
 
