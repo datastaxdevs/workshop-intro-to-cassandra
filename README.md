@@ -15,7 +15,7 @@ It doesn't matter if you join our workshop live or you prefer to do at your own 
 To complete the workshop and get verified badge, follow these simple steps:
 
 1. Watch the workshop live or recorded.
-2. Complete the workshop practice as described below and make the screenshot of the last step ("Execute CRUD").
+2. Complete the workshop practice as described below and make the screenshot of the last step (result of the `DELETE` in "Execute CRUD").
 3. Complete the following short courses: [Cassandra Data Modeling](https://www.datastax.com/node/3272) and [Cassandra Query Language](https://www.datastax.com/dev/scenario/try-it-out-cassandra-query-language-cql). Take screenshots of the "Congratulations" page from each course.
 4. [Submit the Homework](https://github.com/datastaxdevs/workshop-intro-to-cassandra/issues/new?assignees=HadesArchitect&labels=homework%2C+wait+for+review&template=homework.md&title=%5BHW%5D+%3CNAME%3E) attaching the screenshots.
 
@@ -102,11 +102,15 @@ desc KEYSPACES;
 ```
 _"desc" is short for "describe", either is valid._
 
+> CQL commands usually end with a semicolon `;`. If you hit Enter, nothing happens and you don't even get your prompt back, most likely it's because you have not closed the command with `;`. If in trouble, you can always get back to the prompt with `Ctrl-C` and start typing the command anew.
+
 📗 **Expected output**
 
 <img width="1000" alt="Screenshot 2020-09-30 at 13 54 55" src="https://user-images.githubusercontent.com/20337262/94687725-8cbf8600-0324-11eb-83b0-fbd3d7fbdadc.png">
 
-Depending on your setup you might see a different set of keyspaces then in the image. The one we care about for now is **_killrvideo_**. From here, execute the **_USE_** command with the **_killrvideo_** keyspace to tell the database our context is within **_killrvideo_**.
+Depending on your setup you might see a different set of keyspaces than in the image. The one we care about for now is **_killrvideo_**. From here, execute the **_USE_** command with the **_killrvideo_** keyspace to tell the database our context is within **_killrvideo_**.
+
+> Take advantage of the TAB-completion in the CQL Console. Try typing `use kill` and then pressing TAB, for example.
 
 📘 **Command to execute**
 ```
@@ -117,11 +121,11 @@ use killrvideo;
 
 <img width="1000" alt="Screenshot 2020-09-30 at 13 55 56" src="https://user-images.githubusercontent.com/20337262/94687832-b082cc00-0324-11eb-885a-d44e127cf9be.png">
 
-Notice how the prompt displays ```KVUser@cqlsh:killrvideo>``` informing us we are **using** the **_killrvideo_** keyspace. Now we are ready to create our table.
+Notice how the prompt displays ```<username>@cqlsh:killrvideo>``` informing us we are **using** the **_killrvideo_** keyspace. Now we are ready to create our table.
 
 **✅ Step 2c. Create the _users_by_city_ table**
 
-At this point we can execute a command to create the **_users_by_city_** table using the information provided during the workshop presenation. Just copy/paste the following command into your CQL console at the prompt.
+At this point we can execute a command to create the **_users_by_city_** table using the information provided during the workshop presentation. Just copy/paste the following command into your CQL console at the prompt.
 
 📘 **Command to execute**
 
@@ -258,7 +262,7 @@ VALUES(08765309-1234-9999-9999-111111111111, NOW(), 55555555-5555-5555-5555-5555
 
 **✅ Step 3c. C(R)UD = read = read data**
 
-Now that we've inserted a set of data, let's take a look at how to read that data back out. This is done with a **SELECT** statement. In its simplist form we could just execute a statement like the following **_**cough_** **_**cough_**:
+Now that we've inserted a set of data, let's take a look at how to read that data back out. This is done with a **SELECT** statement. In its simplest form we could just execute a statement like the following **_**cough_** **_**cough_**:
 ```
 SELECT * FROM comments_by_user;
 ```
@@ -371,6 +375,11 @@ SELECT * FROM comments_by_video;
 <img width="1000" alt="Screenshot 2020-09-30 at 14 07 05" src="https://user-images.githubusercontent.com/20337262/94689019-3eab8200-0326-11eb-86b9-010c130a49c3.png">
 
 Notice the row is now removed from the comments_by_video table, it's as simple as that.
+
+### Homework note
+
+To submit the **homework**, please take a screenshot of the CQL Console showing the rows in table
+`comments_by_video` before _and_ after executing the DELETE statement.
 
 ## 4. Wrapping up
 We've just scratched the surface of what you can do using DataStax Astra DB with Apache Cassandra. Go take a look at [DataStax for Developers](https://www.datastax.com/dev) to see what else is possible. There's plenty to dig into!
