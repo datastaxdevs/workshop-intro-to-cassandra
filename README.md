@@ -63,7 +63,7 @@ To create the database:
 
 _You can technically use whatever you want and update the code to reflect the keyspace. This is really to get you on a happy path for the first run._
 
-- **For provider and region**: Choose and provider (either GCP or AWS). Region is where your database will reside physically (choose one close to you or your users).
+- **For provider and region**: Choose and provider (either GCP, AWS or Azure). Region is where your database will reside physically (choose one close to you or your users).
 
 - **Create the database**. Review all the fields to make sure they are as shown, and click the `Create Database` button.
 
