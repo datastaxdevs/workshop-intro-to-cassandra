@@ -31,29 +31,51 @@ To complete the workshop and get verified badge, follow these simple steps:
 
 ## 1. Create your Astra DB instance
 
-`ASTRA` service is available at url [https://astra.datastax.com](https://astra.dev/8-10). `ASTRA` is the simplest way to run Cassandra with zero operations at all - just push the button and get your cluster. No credit card required, $25.00 USD credit every month, roughly 5M writes, 30M reads, 40GB storage monthly - sufficient to run small production workloads.
+_**`ASTRA DB`** is the simplest way to run Cassandra with zero operations at all - just push the button and get your cluster. No credit card required, $25.00 USD credit every month, roughly 5M writes, 30M reads, 40GB storage monthly - sufficient to run small production workloads._
 
-**✅ Step 1a. Register (if needed) and Sign In to Astra** : You can use your `Github`, `Google` accounts or register with an `email`.
+✅ Register (if needed) and Sign In to Astra DB [https://astra.datastax.com](https://astra.dev/8-10): You can use your `Github`, `Google` accounts or register with an `email`.
 
-Make sure to chose a password with minimum 8 characters, containing upper and lowercase letters, at least one number and special character
+_Make sure to chose a password with minimum 8 characters, containing upper and lowercase letters, at least one number and special character_
 
-- [Registration Page](https://astra.dev/8-10)
+✅ Choose "Start Free Now"
 
-![Registration Image](images/astra-create-register.png?raw=true)
+Choose the "Start Free Now" plan, then "Get Started" to work in the free tier.
 
-- [Authentication Page](https://astra.dev/8-10)
+You will have plenty of free initial credit (renewed each month!), roughly corresponding
+to 40 GB of storage, 30M reads and 5M writes.
 
-![Login Image](images/astra-create-login.png?raw=true)
+> If this is not enough for you, congratulations! You are most likely running a mid- to large-sized business! In that case you should switch to a paid plan.
 
+(You can follow this [guide](https://docs.datastax.com/en/astra/docs/creating-your-astra-database.html) to set up your free-tier database with the $25 monthly credit.)
 
-**✅ Step 1b. Create a "pay as you go" plan**
+![astra-db-signup](images/tutorials/astra_signup.gif)
 
-Follow this [guide](https://docs.datastax.com/en/astra/docs/creating-your-astra-database.html) and use the values provided below, to set up a pay as you go database with a free $25 monthly credit.
+To create the database:
+
+- **For the database name** - `killrvideocluster`. While Astra DB allows you to fill in these fields with values of your own choosing, please follow our recommendations to ensure the application runs properly.
+
+- **For the keyspace name** - `killrvideo`. It's really important that you use the name "nosql1" for the code to work. In short:
 
 | Parameter | Value 
 |---|---|
 | Database name | killrvideocluster |
 | Keyspace name | killrvideo |
+
+_You can technically use whatever you want and update the code to reflect the keyspace. This is really to get you on a happy path for the first run._
+
+- **For provider and region**: Choose and provider (either GCP or AWS). Region is where your database will reside physically (choose one close to you or your users).
+
+- **Create the database**. Review all the fields to make sure they are as shown, and click the `Create Database` button.
+
+You will see your new database `pending` in the Dashboard.
+
+![db-pending-state](https://github.com/datastaxdevs/shared-assets/blob/master/astra/dashboard-pending-1000-update.png?raw=true)
+
+The status will change to `Active` when the database is ready, this will only take 2-3 minutes. You will also receive an email when it is ready.
+
+**👁️ Walkthrough**
+
+![db-creation-walkthrough](images/tutorials/astra-create-db.gif?raw=true)
 
 ## 2. Create a table
 Ok, now that you have a database created the next step is to create a table to work with. 
