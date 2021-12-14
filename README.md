@@ -6,13 +6,13 @@ It doesn't matter if you join our workshop live or you prefer to do at your own 
 
 - Materials used during presentations
 - Hands-on exercises
-- [Workshop video](https://www.youtube.com/watch?v=VaLwHqAHNtE)
-- [Discord chat](https://bit.ly/cassandra-workshop)
+- [Workshop video](https://www.youtube.com/watch?v=1494eJLRKiU)
+- [Discord chat](https://dtsx.io/discord)
 - [Questions and Answers](https://community.datastax.com/)
 
 ## Homework
 
-To complete the workshop and get verified badge, follow these simple steps:
+To complete the workshop and get a verified badge, follow these simple steps:
 
 1. Watch the workshop live or recorded.
 2. Complete the workshop practice as described below and make the screenshot of the last step (result of the `DELETE` in "Execute CRUD", see [here](#homework-note)).
@@ -24,8 +24,8 @@ To complete the workshop and get verified badge, follow these simple steps:
 | Title  | Description
 |---|---|
 | **Slide deck** | [Slide deck for the workshop](slides/Presentation.pdf) |
-| **1. Create your Astra Db instance** | [Create your Astra Db instance](#1-create-your-astra-db-instance) |
-| **2. Create a table** | [Create a table](#2-create-a-table) |
+| **1. Create your Astra DB instance** | [Create your Astra DB instance](#1-create-your-astra-db-instance) |
+| **2. Create tables** | [Create tables](#2-create-tables) |
 | **3. Execute CRUD (Create, Read, Update, Delete) operations** | [Execute CRUD operations](#3-execute-crud-operations) |
 
 
@@ -56,16 +56,18 @@ To create the database:
 
 - **For the keyspace name** - `chatsandra`. Please stick to this name, it will make the following steps much easier (you have to customize here and there otherwise). In short:
 
+_Note_: if you already have a `workshops` database, for instance from a previous workshop with us, you can simply create the keyspace with the `Add Keyspace` button in your Astra DB dashboard: the new keyspace will be available in few seconds.
+
 | Parameter | Value 
 |---|---|
 | Database name | workshops  |
 | Keyspace name | chatsandra |
 
-- **For provider and region**: Choose and provider (either GCP, AWS or Azure). Region is where your database will reside physically (choose one close to you or your users).
+- **For provider and region**: Choose any provider (either GCP, AWS or Azure). Region is where your database will reside physically (choose one close to you or your users).
 
 - **Create the database**. Review all the fields to make sure they are as shown, and click the `Create Database` button.
 
-You will see your new database `pending` in the Dashboard.
+You will see your new database as `Pending` in the Dashboard.
 
 ![db-pending-state](https://github.com/datastaxdevs/shared-assets/blob/master/astra/dashboard-pending-1000-update.png?raw=true)
 
@@ -75,16 +77,16 @@ The status will change to `Active` when the database is ready, this will only ta
 
 ![db-creation-walkthrough](images/tutorials/astra-create-db.gif?raw=true)
 
-## 2. Create a table
+## 2. Create tables
 Ok, now that you have a database created the next step is to create tables to work with. 
 
 > _General Methodology Note_: We'll work with a (rather simplified) "chat application" called **ChatSandra**: users, identified by a unique ID, write posts in several "rooms".
 > Rooms are also uniquely identified by their name, such as `#gardening`. The design of our application is such
 > that we need to be able to (a) retrieve all posts by a given user, sorted by descending date,
 > and (b) retrieve all posts for a given room, sorted by descending date.
-> As dictated by the best practices of data modeling with Cassandra, this requirement is satisfied by creating _two_ very similar tables,
+> As dictated by the best practices of data modeling with Cassandra, these requirements are satisfied by creating _two_ very similar tables (denormalization),
 > as you'll see momentarily: they will contain the same posts, but stored (a.k.a. partitioned) in two different ways;
-> and it will be our (or the application's) responsibility to maintain them aligned.
+> and it will be our (that is, the application's) responsibility to maintain them aligned.
 
 **✅ Step 2a. Navigate to the CQL Console and login to the database**
 
@@ -116,11 +118,11 @@ _"desc" is short for "describe", either is valid._
 
 📗 **Expected output**
 
-<img width="1000" alt="Screenshot 2020-09-30 at 13 54 55" src="https://user-images.githubusercontent.com/20337262/94687725-8cbf8600-0324-11eb-83b0-fbd3d7fbdadc.png">
+![Keyspaces in CQL](images/cql/01_desc_keyspaces.png)
 
 Depending on your setup you might see a different set of keyspaces than in the image. The one we care about for now is **_chatsandra_**. From here, execute the **_USE_** command with the **_chatsandra_** keyspace to tell the database our context is within **_chatsandra_**.
 
-> Take advantage of the TAB-completion in the CQL Console. Try typing `use kill` and then pressing TAB, for example.
+> Take advantage of the TAB-completion in the CQL Console. Try typing `use cha` and then pressing TAB, for example.
 
 📘 **Command to execute**
 ```
@@ -129,7 +131,7 @@ USE chatsandra;
 
 📗 **Expected output**
 
-<img width="1000" alt="Screenshot 2020-09-30 at 13 55 56" src="https://user-images.githubusercontent.com/20337262/94687832-b082cc00-0324-11eb-885a-d44e127cf9be.png">
+![USE keyspace](images/cql/02_use_chatsandra.png)
 
 Notice how the prompt displays ```<username>@cqlsh:chatsandra>``` informing us we are **using** the **_chatsandra_** keyspace. Now we are ready to create our table.
 
@@ -137,8 +139,8 @@ Notice how the prompt displays ```<username>@cqlsh:chatsandra>``` informing us w
 
 At this point we can execute a command to create the **posts_by_user** table.
 Just copy/paste the following command into your CQL console at the prompt.
-Try to identify the primary key and the partition key for this table in the
-command:
+Try to identify the primary key, the partition key and the clustering columns
+(if any) for this table in the command:
 
 📘 **Command to execute**
 
@@ -162,7 +164,7 @@ DESC TABLES;
 
 📗 **Expected output**
 
-<img width="1000" alt="Screenshot 2020-09-30 at 13 57 32" src="https://user-images.githubusercontent.com/20337262/94687995-e88a0f00-0324-11eb-8c7a-08c3dee00eaf.png">
+![A table created](images/cql/03_table_created.png)
 
 Aaaand **BOOM**, you created a table in your database. That's it. You may wonder, how did we arrive at this particular structure for the table? The answer lies in the methodology for data modeling
 with Cassandra, which, at its very core, states: _first look at the application's needs, determine the required workflows, then map them to a number of queries, finally design a table around each query_.
@@ -174,7 +176,7 @@ CRUD operations stand for **create, read, update, and delete**. Simply put, they
 
 **✅ Step 3a. Create another table**
 
-We started by creating the **_posts_by_user_** table earlier, which allows to get all posts from a given user.
+We started by creating the **_posts_by_user_** table earlier, which would be used to get all posts for a given user.
 But now we need to create another table to support a different query: "get all posts for a given _room_".
 As you have seen in the presentation, data modeling with Cassandra generally requires different tables for different queries.
 
@@ -202,7 +204,7 @@ DESC TABLES;
 
 📗 **Expected output**
 
-<img width="1000" alt="Screenshot 2020-09-30 at 13 59 50" src="https://user-images.githubusercontent.com/20337262/94688257-3bfc5d00-0325-11eb-9ec6-40d2596fb71e.png">
+![Another table created](images/cql/04_another_table_created.png)
 
 **✅ Step 3b. (C)RUD = create = insert data**
 
@@ -212,7 +214,7 @@ _(Once you have carefully examined the first of the following **INSERT** stateme
 > _Note_: in the following, we are using "timeuuids" crafted by hand to make things easier to visualize. In a real application, you would generate them at application
 > level or, in some cases, using the `NOW()` primitive offered by CQL. In the values below, you can just look at the first octet of hex digits.
 
-> _Note_ that we have three users in this example: "111...", "555..." and "999...", which are having a pleasant conversation. In a real application, you would probably
+> _Note_ that we have three users in this example: "111...", "555..." and "999...", which are having some pleasant conversations. In a real application, you would probably
 > generate user IDs at the application level or with the `UUID()` primitive offered by CQL.
 > See the [documentation](https://docs.datastax.com/en/cql-oss/3.3/cql/cql_reference/timeuuid_functions_r.html) for more details on time/uuid-related CQL functions.
 
@@ -317,13 +319,14 @@ INSERT INTO posts_by_room (user_id, post_id, room_id, text) VALUES (
 
 **✅ Step 3c. C(R)UD = read = read data**
 
-Now that we've inserted a set of data, let's take a look at how to read that data back out. This is done with a **SELECT** statement. In its simplest form we could just execute a statement like the following **_**cough_** **_**cough_**:
+Now that we've inserted a set of rows (two sets, to be precise), let's take a look at how to read the data back out. This is done with a **SELECT** statement. In its simplest form we could just execute a statement like the following **_**cough_** **_**cough_**:
 ```
 // Read all rows from "posts_by_user" table (careful with this ...)
 SELECT * FROM posts_by_user;
 ```
 
-You may have noticed my coughing fit a moment ago. Even though you can execute a **SELECT** statement with no partition key definied this is NOT something you should do when using Apache Cassandra. We are doing it here for illustration purposes only and because our dataset only has a handful of values. Given the data we inserted earlier a more proper statement would be something like (while we are at it, we also explicitly specify which columns we want back):
+You may have noticed my coughing fit a moment ago. Even though you can execute a **SELECT** statement with no partition key defined, this is NOT something you should do when using Apache Cassandra. We are doing it here for illustration purposes only and because our whole dataset is just a handful of values.
+Given the data we inserted earlier, a more proper statement would be something like (while we are at it, we also explicitly specify which columns we want back):
 ```
 // Read (some columns of) rows in a certain partition of "posts_by_user" table
 SELECT post_id, room_id, text FROM posts_by_user
@@ -349,7 +352,7 @@ SELECT user_id, text FROM posts_by_room WHERE room_id = '#hiking';
 
 📗 **Expected output**
 
-<img width="1000" alt="Screenshot 2020-09-30 at 14 03 18" src="https://user-images.githubusercontent.com/20337262/94688606-bb8a2c00-0325-11eb-8124-5c4d9ac0d4fc.png">
+![SELECT in CQL](images/cql/05_selects.png)
 
 Once you execute the above **SELECT** statements you should see something like the expected output above. We have now **READ** the data we **INSERTED** earlier. Awesome job!
 
@@ -415,7 +418,7 @@ SELECT post_id, room_id, text FROM posts_by_user
 
 📗 **Expected output**
 
-<img width="1000" alt="Screenshot 2020-09-30 at 14 05 21" src="https://user-images.githubusercontent.com/20337262/94688803-0015c780-0326-11eb-96e3-b76fb59a9d11.png">
+![Updating in CQL](images/cql/06_updated.png)
 
 But **wait**: data, again, is denormalized! This means that we have to make sure
 such an edit is performed on table **_posts_by_room_** as well.
@@ -425,8 +428,8 @@ these are the fields to provide, along with `text` itself, to the **UPDATE** sta
 And we _could_ run an **UPDATE**. But, lo and behold, in Cassandra **UPDATE**s
 and **INSERT**s are (almost) the same, as a consequence of its architecture and
 the way storage and write logic are structured. We can then update the row with
-an **INSERT** statement like the following (note we provide primary key,
-any field that we want to modify, and leave out the other, unchanged fields):
+an **INSERT** statement like the following (note that we provide: primary key +
+any field that we want to modify; and leave out the other, unchanged fields):
 
 📘 **Commands to execute**
 ```
@@ -448,12 +451,12 @@ The final operation from our **CRUD** acronym is **DELETE**. This is the operati
 In Apache Cassandra you can **DELETE** from the cell level all the way up to the partition
 _(meaning I could remove a single column in a single row or I could remove a whole partition)_ using the same **DELETE** command.
 
-_Generally speaking, it's best to perform as few delete operations as possible on the largest amount of data. Think of it this way, if you want to delete ALL data in a table, don't delete each individual cell, just **TRUNCATE** the table. If you need to delete all the rows in a partition, don't delete each row, **DELETE** the partition and so on._
+_Generally speaking, it's best to perform as few delete operations as possible on the largest amount of data. Think of it this way, if you want to delete ALL data in a table, don't delete each individual cell, just **TRUNCATE** the table. If you need to delete all the rows in a partition, don't delete each row, **DELETE** the partition, and so on._
 
 > User "555..." notices the post by "111..." being edited and wants to remove their snarky remark. Let's help them!
 
 When deleting a row on a given table, we have to specify the values of the primary key for that table. And don't forget
-that a post appears as two separate rows in the two tables, so we have to perform
+that, in our data model, a post appears as two separate rows in the two tables, so we have to perform
 two different **DELETE** operations!
 
 📘 **Commands to execute**
@@ -482,7 +485,7 @@ SELECT post_id, user_id, text FROM posts_by_room WHERE room_id = '#hiking';
 
 📗 **Expected output**
 
-<img width="1000" alt="Screenshot 2020-09-30 at 14 07 05" src="https://user-images.githubusercontent.com/20337262/94689019-3eab8200-0326-11eb-86b9-010c130a49c3.png">
+![Deleting in CQL](images/cql/07_deleting.png)
 
 Notice the rows are now removed from both tables: it is as simple as that.
 
@@ -503,3 +506,7 @@ Congratulations: you made to the end of today's workshop.
 Don't forget to submit your homework and be awarded a nice verified badge!
 
 ![Badge](images/badge/intro-to-cassandra.png)
+
+**... and see you at our next workshop!**
+
+> The DataStax Developers
