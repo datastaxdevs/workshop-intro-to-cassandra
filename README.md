@@ -33,7 +33,7 @@ To complete the workshop and get verified badge, follow these simple steps:
 
 _**`ASTRA DB`** is the simplest way to run Cassandra with zero operations at all - just push the button and get your cluster. No credit card required, $25.00 USD credit every month, roughly 5M writes, 30M reads, 40GB storage monthly - sufficient to run small production workloads._
 
-✅ Register (if needed) and Sign In to Astra DB [https://astra.datastax.com](https://astra.dev/cassandra-day-anz): You can use your `Github`, `Google` accounts or register with an `email`.
+✅ Register (if needed) and Sign In to Astra DB [https://astra.datastax.com](https://astra.dev/12-15): You can use your `Github`, `Google` accounts or register with an `email`.
 
 _Make sure to chose a password with minimum 8 characters, containing upper and lowercase letters, at least one number and special character_
 
@@ -42,7 +42,7 @@ _Make sure to chose a password with minimum 8 characters, containing upper and l
 Choose the "Start Free Now" plan, then "Get Started" to work in the free tier.
 
 You will have plenty of free initial credit (renewed each month!), roughly corresponding
-to 40 GB of storage, 30M reads and 5M writes.
+to 80 GB of storage and 20M read/write operations.
 
 > If this is not enough for you, congratulations! You are most likely running a mid- to large-sized business! In that case you should switch to a paid plan.
 
@@ -52,16 +52,14 @@ to 40 GB of storage, 30M reads and 5M writes.
 
 To create the database:
 
-- **For the database name** - `killrvideocluster`. While Astra DB allows you to fill in these fields with values of your own choosing, please follow our recommendations to ensure the application runs properly.
+- **For the database name** - `workshops`. While Astra DB allows you to fill in these fields with values of your own choosing, please follow our recommendations to ensure the application runs properly.
 
-- **For the keyspace name** - `killrvideo`. It's really important that you use the name "nosql1" for the code to work. In short:
+- **For the keyspace name** - `killrvideo`. Please stick to this name, it will make the following steps much easier (you have to customize here and there otherwise). In short:
 
 | Parameter | Value 
 |---|---|
-| Database name | killrvideocluster |
+| Database name | workshops  |
 | Keyspace name | killrvideo |
-
-_You can technically use whatever you want and update the code to reflect the keyspace. This is really to get you on a happy path for the first run._
 
 - **For provider and region**: Choose and provider (either GCP, AWS or Azure). Region is where your database will reside physically (choose one close to you or your users).
 
