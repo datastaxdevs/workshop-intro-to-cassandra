@@ -354,6 +354,15 @@ SELECT user_id, text FROM posts_by_room WHERE room_id = '#hiking';
 
 ![SELECT in CQL](images/cql/05_selects.png)
 
+_Notice how the two tables contain the same set of posts, but group them differently:
+table `posts_by_user` is partitioned by user, while table `posts_by_room` is partitioned by room - and the corresponding outputs
+reflect this fact.
+This is very much related to the fact that these two tables, in the data modeling process, were designed
+to answer two different questions, "what are the posts by user X?" and "what are the posts in room Y?" respectively.
+Moreover, within any partition in both tables, right as we required when creating the table,
+posts are kept (and displayed) sorted by decreasing `post_id` (which, due to the nature of `TIMEUUID`s,
+implies a time-ordering as well)._
+
 Once you execute the above **SELECT** statements you should see something like the expected output above. We have now **READ** the data we **INSERTED** earlier. Awesome job!
 
 _BTW, just a little extra for those who are interested. Since we used a [TIMEUUID](https://docs.datastax.com/en/cql-oss/3.3/cql/cql_reference/timeuuid_functions_r.html) type for our **post_id** field we can use the **dateOf()** function to determine the timestamp from the value. Check it out._
