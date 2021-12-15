@@ -68,9 +68,9 @@ _Note_: if you already have a `workshops` database, for instance from a previous
 
 - **Create the database**. Review all the fields to make sure they are as shown, and click the `Create Database` button.
 
-You will see your new database as `Pending` in the Dashboard.
-
-The status will change to `Active` when the database is ready, this will only take 2-3 minutes. You will also receive an email when it is ready.
+You will see your new database as `Pending` in the Dashboard;
+the status will change to `Active` when the database is ready. This will only take 2-3 minutes
+(you will also receive an email when it is ready).
 
 ## 2. Create tables
 Ok, now that you have a database created the next step is to create tables to work with. 
