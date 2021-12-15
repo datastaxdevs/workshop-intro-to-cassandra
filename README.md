@@ -91,7 +91,7 @@ In the Summary screen for your database, select **_CQL Console_** from the top m
 
 <details>
     <summary>Show me! </summary>
-    <img src="images/go-to-cql-console.gif" />
+    <img src="images/astra-cql-console.gif" />
 </details>
 
 > _Note_: if you are working with your own Cassandra cluster (other than Astra DB), you will reach the CQL Console differently.
