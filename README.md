@@ -109,7 +109,7 @@ Ok, now we're ready to rock. Creating tables is quite easy, but before we create
 First, let's **_DESCRIBE_** all of the keyspaces that are in the database. This will give us a list of the available keyspaces.
 
 📘 **Command to execute**
-```
+```sql`
 DESC KEYSPACES;
 ```
 _"desc" is short for "describe", either is valid._
@@ -125,7 +125,7 @@ Depending on your setup you might see a different set of keyspaces than in the i
 > Take advantage of the TAB-completion in the CQL Console. Try typing `use cha` and then pressing TAB, for example.
 
 📘 **Command to execute**
-```
+```sql`
 USE chatsandra;
 ```
 
@@ -144,7 +144,7 @@ Try to identify the primary key, the partition key and the clustering columns
 
 📘 **Command to execute**
 
-```
+```sql`
 CREATE TABLE IF NOT EXISTS posts_by_user ( 
   user_id     UUID, 
   post_id     TIMEUUID,
@@ -158,7 +158,7 @@ Then **_DESCRIBE_** your keyspace tables to ensure it is there.
 
 📘 **Command to execute**
 
-```
+```sql`
 DESC TABLES;
 ```
 
@@ -184,7 +184,7 @@ Let's go ahead then and create the table **_posts_by_room_**. Execute the follow
 
 📘 **Commands to execute**
 
-```
+```sql`
 CREATE TABLE IF NOT EXISTS posts_by_room ( 
   user_id     UUID, 
   post_id     TIMEUUID,
@@ -198,7 +198,7 @@ Then **_DESCRIBE_** your keyspace tables, to ensure both tables are there.
 
 📘 **Command to execute**
 
-```
+```sql`
 DESC TABLES;
 ```
 
@@ -220,7 +220,7 @@ _(Once you have carefully examined the first of the following **INSERT** stateme
 
 📘 **Commands to execute**
 
-```
+```sql`
 // Insert some data in the "posts_by_user" table
 
 INSERT INTO posts_by_user (
@@ -276,7 +276,7 @@ with only the table name changed):
 
 📘 **Commands to execute**
 
-```
+```sql`
 // Insert some data in the "posts_by_room" table
 
 INSERT INTO posts_by_room (user_id, post_id, room_id, text) VALUES (
@@ -320,14 +320,14 @@ INSERT INTO posts_by_room (user_id, post_id, room_id, text) VALUES (
 **✅ Step 3c. C(R)UD = read = read data**
 
 Now that we've inserted a set of rows (two sets, to be precise), let's take a look at how to read the data back out. This is done with a **SELECT** statement. In its simplest form we could just execute a statement like the following **_**cough_** **_**cough_**:
-```
+```sql`
 // Read all rows from "posts_by_user" table (careful with this ...)
 SELECT * FROM posts_by_user;
 ```
 
 You may have noticed my coughing fit a moment ago. Even though you can execute a **SELECT** statement with no partition key defined, this is NOT something you should do when using Apache Cassandra. We are doing it here for illustration purposes only and because our whole dataset is just a handful of values.
 Given the data we inserted earlier, a more proper statement would be something like (while we are at it, we also explicitly specify which columns we want back):
-```
+```sql`
 // Read (some columns of) rows in a certain partition of "posts_by_user" table
 SELECT post_id, room_id, text FROM posts_by_user
   WHERE user_id = 11111111-1111-1111-1111-111111111111;
@@ -339,7 +339,7 @@ Ok, with that out of the way we can **READ** the data from the other table as we
 
 📘 **Commands to execute**
 
-```
+```sql`
 // Read the whole "posts_by_room" table
 // (warning: not suitable for large tables in production)
 SELECT * FROM posts_by_room;
@@ -367,7 +367,7 @@ Once you execute the above **SELECT** statements you should see something like t
 
 _BTW, just a little extra for those who are interested. Since we used a [TIMEUUID](https://docs.datastax.com/en/cql-oss/3.3/cql/cql_reference/timeuuid_functions_r.html) type for our **post_id** field we can use the **dateOf()** function to determine the timestamp from the value. Check it out._
 
-```
+```sql`
 // Read all data from the posts_by_room table, 
 // convert post_id into a timestamp, and label the column "post_date"
 SELECT user_id, dateOf(post_id) AS post_date, text FROM posts_by_room
@@ -380,7 +380,7 @@ At this point we've **_CREATED_** and **_READ_** some data, but what happens whe
 _The use case is as follows: in our chat app, users are allowed to edit their previous posts._
 
 Let's take one of the records we created earlier and modify it. Recall that we **_INSERTED_** the following record in the **_posts_by_user_** table.
-```
+```sql`
       // ** Just for reference: **
       //  INSERT INTO posts_by_user (user_id, post_id, room_id, text) VALUES (
       //    11111111-1111-1111-1111-111111111111,
@@ -390,7 +390,7 @@ Let's take one of the records we created earlier and modify it. Recall that we *
 ```
 
 Let's also take a look at how the **_posts_by_user_** table was created. In order to **UPDATE** an existing record, indeed, we need to know the primary key we defined when we **CREATE**d the table.
-```
+```sql`
       // ** Just for reference: **
       // CREATE TABLE IF NOT EXISTS posts_by_user ( 
       //   user_id     UUID, 
@@ -415,7 +415,7 @@ So we can run the following **UPDATE** statement and help user "111..." fix thei
 
 📘 **Commands to execute**
 
-```
+```sql`
 UPDATE posts_by_user 
   SET text = '... and Mt. Gumbo was NOT SO easy!!!' 
     WHERE user_id = 11111111-1111-1111-1111-111111111111
@@ -441,7 +441,7 @@ an **INSERT** statement like the following (note that we provide: primary key +
 any field that we want to modify; and leave out the other, unchanged fields):
 
 📘 **Commands to execute**
-```
+```sql`
 INSERT INTO posts_by_room (room_id, post_id, text) VALUES (
   '#hiking',
   aaaaaaaa-5cff-11ec-be16-1fedb0dfd057,
@@ -470,7 +470,7 @@ two different **DELETE** operations!
 
 📘 **Commands to execute**
 
-```
+```sql`
 SELECT post_id, room_id, text FROM posts_by_user
   WHERE user_id = 55555555-5555-5555-5555-555555555555;
 
