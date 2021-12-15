@@ -80,13 +80,15 @@ The status will change to `Active` when the database is ready, this will only ta
 ## 2. Create tables
 Ok, now that you have a database created the next step is to create tables to work with. 
 
-> _General Methodology Note_: We'll work with a (rather simplified) "chat application" called **ChatSandra**: users, identified by a unique ID, write posts in several "rooms".
+> _General Methodology Note_: We'll work with a (rather simplified) "chat application" called **ChatSandra**:
+> users, identified by a unique ID, write posts in several "rooms".
 > Rooms are also uniquely identified by their name, such as `#gardening`. The design of our application is such
 > that we need to be able to (a) retrieve all posts by a given user, sorted by descending date,
 > and (b) retrieve all posts for a given room, sorted by descending date.
 > As dictated by the best practices of data modeling with Cassandra, these requirements are satisfied by creating _two_ very similar tables (denormalization),
 > as you'll see momentarily: they will contain the same posts, but stored (a.k.a. partitioned) in two different ways;
 > and it will be our (that is, the application's) responsibility to maintain them aligned.
+> Of course, we also need a `users` table - we will start with this one indeed.
 
 **✅ Step 2a. Navigate to the CQL Console and login to the database**
 
@@ -135,12 +137,46 @@ USE chatsandra;
 
 Notice how the prompt displays ```<username>@cqlsh:chatsandra>``` informing us we are **using** the **_chatsandra_** keyspace. Now we are ready to create our table.
 
-**✅ Step 2c. Create the posts_by_user table**
+**✅ Step 2c. Create the users table**
 
-At this point we can execute a command to create the **posts_by_user** table.
+At this point we can execute a command to create the **users** table.
 Just copy/paste the following command into your CQL console at the prompt.
 Try to identify the primary key, the partition key and the clustering columns
 (if any) for this table in the command:
+
+📘 **Command to execute**
+
+```sql
+CREATE TABLE IF NOT EXISTS users ( 
+  email       TEXT,
+  name        TEXT,
+  password    TEXT,
+  user_id     UUID,
+  PRIMARY KEY (( email ))
+);
+```
+
+Then **_DESCRIBE_** your keyspace tables to ensure it is there.
+
+📘 **Command to execute**
+
+```sql
+DESC TABLES;
+```
+📗 **Expected output**
+
+![A table created](images/cql/xxx.png)
+
+Aaaand **BOOM**, you created a table in your database. That's it.
+Now let's go ahead and create a couple more tables before we do
+something interesting with the data.
+
+**✅ Step 2d. Create the tables for posts**
+
+Let us create two more tables, which will contain the _posts_.
+As remarked earlier, we will store the posts in two tables which
+differ in how they are partitioned: look at the commands below,
+the differences mostly lie in the `PRIMARY KEY` specification:
 
 📘 **Command to execute**
 
@@ -152,9 +188,17 @@ CREATE TABLE IF NOT EXISTS posts_by_user (
   text        TEXT,
   PRIMARY KEY ((user_id), post_id)
 ) WITH CLUSTERING ORDER BY (post_id DESC);
+
+CREATE TABLE IF NOT EXISTS posts_by_room ( 
+  room_id     TEXT, 
+  post_id     TIMEUUID,
+  user_id     UUID,
+  text        TEXT,
+  PRIMARY KEY ((room_id), post_id)
+) WITH CLUSTERING ORDER BY (post_id DESC);
 ```
 
-Then **_DESCRIBE_** your keyspace tables to ensure it is there.
+Then **_DESCRIBE_** your keyspace tables: you should see all three listed.
 
 📘 **Command to execute**
 
@@ -166,57 +210,64 @@ DESC TABLES;
 
 ![A table created](images/cql/03_table_created.png)
 
-Aaaand **BOOM**, you created a table in your database. That's it. You may wonder, how did we arrive at this particular structure for the table? The answer lies in the methodology for data modeling
-with Cassandra, which, at its very core, states: _first look at the application's needs, determine the required workflows, then map them to a number of queries, finally design a table around each query_.
+_You may wonder, how did we arrive at this particular structure for the post tables?
+The answer lies in the methodology for data modeling
+with Cassandra, which, at its very core, states: **first look at the application's needs,
+determine the required workflows, then map them to a number of queries, finally design a table around each query**.
+We create table **_posts_by_user_** to support a query such as "get all posts by a user X";
+then we also need table **_posts_by_room_** for a query of type "get all posts in room Y".
+The two tables have the same columns, but the different choice of partition key is what
+will make the two queries possible on the respective tables._
 
 [🏠 Back to Table of Contents](#table-of-contents)
 
 ## 3. Execute CRUD operations
 CRUD operations stand for **create, read, update, and delete**. Simply put, they are the basic types of commands you need to work with ANY database in order to maintain data for your applications.
 
-**✅ Step 3a. Create another table**
+**✅ Step 3a. (C)RUD = create = insert data, users**
 
-We started by creating the **_posts_by_user_** table earlier, which would be used to get all posts for a given user.
-But now we need to create another table to support a different query: "get all posts for a given _room_".
-As you have seen in the presentation, data modeling with Cassandra generally requires different tables for different queries.
-
-Let's go ahead then and create the table **_posts_by_room_**. Execute the following statements to create our tables.
-
-📘 **Commands to execute**
-
-```sql
-CREATE TABLE IF NOT EXISTS posts_by_room ( 
-  user_id     UUID, 
-  post_id     TIMEUUID,
-  room_id     TEXT, 
-  text        TEXT,
-  PRIMARY KEY ((room_id), post_id)
-) WITH CLUSTERING ORDER BY (post_id DESC);
-```
-
-Then **_DESCRIBE_** your keyspace tables, to ensure both tables are there.
-
-📘 **Command to execute**
-
-```sql
-DESC TABLES;
-```
-
-📗 **Expected output**
-
-![Another table created](images/cql/04_another_table_created.png)
-
-**✅ Step 3b. (C)RUD = create = insert data**
-
-Our tables are in place so let's put some data in them. This is done with the **INSERT** statement. We'll start by inserting data into the **_posts_by_user_** table.
-_(Once you have carefully examined the first of the following **INSERT** statements below, you can simply copy/paste the others which are very similar.)_
-
-> _Note_: in the following, we are using "timeuuids" crafted by hand to make things easier to visualize. In a real application, you would generate them at application
-> level or, in some cases, using the `NOW()` primitive offered by CQL. In the values below, you can just look at the first octet of hex digits.
+Our tables are in place so let's put some data in them. This is done with the **INSERT** statement. We'll start by inserting three rows into the **_users_** table.
 
 > _Note_ that we have three users in this example: "111...", "555..." and "999...", which are having some pleasant conversations. In a real application, you would probably
 > generate user IDs at the application level or with the `UUID()` primitive offered by CQL.
 > See the [documentation](https://docs.datastax.com/en/cql-oss/3.3/cql/cql_reference/timeuuid_functions_r.html) for more details on time/uuid-related CQL functions.
+
+Copy and paste the following in your CQL Console:
+_(Once you have carefully examined the first of the following **INSERT** statements below, you can simply copy/paste the others which are very similar.)_
+
+📘 **Commands to execute**
+
+```sql
+INSERT INTO users (
+  email,    // TEXT
+  name,     // TEXT
+  password, // TEXT
+  user_id   // UUID: id of a user
+)
+VALUES (
+  'otzi@mail.com',
+  'Otzi Oney',
+  '123456',
+  11111111-1111-1111-1111-111111111111
+);
+
+INSERT INTO users (email, name, password, user_id) VALUES (
+  'fred@qmail.net', 'Fred Fivey', 'qwerty',
+  55555555-5555-5555-5555-555555555555
+);
+INSERT INTO users (email, name, password, user_id) VALUES (
+  'nina@zmail.org', 'Nina Niney', 's3cr3t',
+  99999999-9999-9999-9999-999999999999
+);
+```
+
+**✅ Step 3b. (C)RUD = create = insert data, posts**
+
+Let's run some more **INSERT** statements, this time for **posts**. We'll insert data into the **_posts_by_user_** table.
+_(Once you have carefully examined the first of the following **INSERT** statements below, you can simply copy/paste the others which are very similar.)_
+
+> _Note_: in the following, we are using `TIMEUUID`s crafted by hand, to make things easier to visualize. In a real application, you would generate them at application
+> level or, in some cases, using the `NOW()` primitive offered by CQL. In the values below, you can just look at the first octet of hex digits.
 
 📘 **Commands to execute**
 
