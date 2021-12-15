@@ -165,7 +165,7 @@ DESC TABLES;
 ```
 📗 **Expected output**
 
-![A table created](images/cql/xxx.png)
+![A table created](images/cql/03_user_table_created.png)
 
 Aaaand **BOOM**, you created a table in your database. That's it.
 Now let's go ahead and create a couple more tables before we do
@@ -208,7 +208,7 @@ DESC TABLES;
 
 📗 **Expected output**
 
-![A table created](images/cql/03_table_created.png)
+![A table created](images/cql/04_post_tables_created.png)
 
 _You may wonder, how did we arrive at this particular structure for the post tables?
 The answer lies in the methodology for data modeling
@@ -222,7 +222,7 @@ will make the two queries possible on the respective tables._
 [🏠 Back to Table of Contents](#table-of-contents)
 
 ## 3. Execute CRUD operations
-CRUD operations stand for **create, read, update, and delete**. Simply put, they are the basic types of commands you need to work with ANY database in order to maintain data for your applications.
+CRUD stands for "**create, read, update, and delete**". Simply put, they are the basic types of commands you need to work with ANY database in order to maintain data for your applications.
 
 **✅ Step 3a. (C)RUD = create = insert data, users**
 
@@ -267,7 +267,7 @@ Let's run some more **INSERT** statements, this time for **posts**. We'll insert
 _(Once you have carefully examined the first of the following **INSERT** statements below, you can simply copy/paste the others which are very similar.)_
 
 > _Note_: in the following, we are using `TIMEUUID`s crafted by hand, to make things easier to visualize. In a real application, you would generate them at application
-> level or, in some cases, using the `NOW()` primitive offered by CQL. In the values below, you can just look at the first octet of hex digits.
+> level or, in some cases, using the `NOW()` primitive offered by CQL. In the values below, you can just pay attention to the first octet of hex digits.
 
 📘 **Commands to execute**
 
