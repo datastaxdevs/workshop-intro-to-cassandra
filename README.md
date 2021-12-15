@@ -51,11 +51,11 @@ to 80 GB of storage and 20M read/write operations.
 
 ![astra-db-signup](images/tutorials/astra_signup.gif)
 
-To create the database:
+To create the database, please note that _the `db_name` and `ks_name` in the above image are just placeholders_:
 
-- **For the database name** - `workshops`. While Astra DB allows you to fill in these fields with values of your own choosing, please follow our recommendations to ensure the application runs properly.
+- **For the database name** - use `workshops`. While Astra DB allows you to fill in these fields with values of your own choosing, please follow our recommendations to ensure the application runs properly.
 
-- **For the keyspace name** - `chatsandra`. Please stick to this name, it will make the following steps much easier (you have to customize here and there otherwise). In short:
+- **For the keyspace name** - use `chatsandra`. Please stick to this name, it will make the following steps much easier (you have to customize here and there otherwise). In short:
 
 _Note_: if you already have a `workshops` database, for instance from a previous workshop with us, you can simply create the keyspace with the `Add Keyspace` button in your Astra DB dashboard: the new keyspace will be available in few seconds.
 
@@ -70,13 +70,7 @@ _Note_: if you already have a `workshops` database, for instance from a previous
 
 You will see your new database as `Pending` in the Dashboard.
 
-![db-pending-state](https://github.com/datastaxdevs/shared-assets/blob/master/astra/dashboard-pending-1000-update.png?raw=true)
-
 The status will change to `Active` when the database is ready, this will only take 2-3 minutes. You will also receive an email when it is ready.
-
-**👁️ Walkthrough**
-
-![db-creation-walkthrough](images/tutorials/astra-create-db.gif?raw=true)
 
 ## 2. Create tables
 Ok, now that you have a database created the next step is to create tables to work with. 
