@@ -16,8 +16,9 @@ To complete the workshop and get a verified badge, follow these simple steps:
 
 1. Watch the workshop live or recorded.
 2. Complete the workshop practice as described below and make the screenshot of the last step (result of the `DELETE` in "Execute CRUD", see [here](#homework-note)).
-3. Complete the following short courses: [Cassandra Data Modeling](https://www.datastax.com/node/3272) and [Cassandra Query Language](https://www.datastax.com/dev/scenario/try-it-out-cassandra-query-language-cql). Take screenshots of the "Congratulations" page from each course.
-4. [Submit the Homework](https://github.com/datastaxdevs/workshop-intro-to-cassandra/issues/new?assignees=HadesArchitect&labels=homework%2C+wait+for+review&template=homework.md&title=%5BHW%5D+%3CNAME%3E) attaching the screenshots.
+3. Complete the following short courses: [Cassandra Data Modeling](https://www.datastax.com/dev/scenario/try-it-out-cassandra-data-modeling) and [Cassandra Query Language](https://www.datastax.com/dev/scenario/try-it-out-cassandra-query-language-cql). Take screenshots of the "Congratulations" page from each course.
+4. [Submit the Homework through this form](HW_LINK) and attach the screenshots above.
+5. Give us a few days to review your submission and relax: your well-earned badge will soon land in your mailbox!
 
 ## Table of Contents
 
