@@ -558,10 +558,10 @@ There's plenty to dig into!
 
 Congratulations: you made to the end of today's workshop.
 
-Don't forget to submit your homework and be awarded a nice verified badge!
+Don't forget to [submit your homework](https://dtsx.io/homework-intro-to-cassandra) and be awarded a nice verified badge!
 
 ![Badge](images/badge/intro-to-cassandra.png)
 
 **... and see you at our next workshop!**
 
-> The DataStax Developers
+> Sincerely yours, The DataStax Developers
