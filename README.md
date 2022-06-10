@@ -1,5 +1,4 @@
-## 🎓 Intro to Apache Cassandra for Developers 🎓
-### 🔥 Using DataStax Astra DB 🔥
+# 🎓🔥 Intro to Apache Cassandra for Developers 🔥🎓
 
 Welcome to the 'Intro to Cassandra for Developers' workshop! In this two-hour workshop, the Developer Advocate team of DataStax shows the most important fundamentals and basics of the powerful distributed NoSQL database Apache Cassandra. Using Astra DB, the cloud based Cassandra-as-a-Service platform delivered by DataStax, we will cover the very first steps for every developer who wants to try to learn a new database: creating tables and CRUD operations. 
 
