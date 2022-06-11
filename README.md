@@ -34,7 +34,7 @@ To complete the workshop and get a verified badge, follow these simple steps:
 
 _**`ASTRA DB`** is the simplest way to run Cassandra with zero operations at all - just push the button and get your cluster. No credit card required, $25.00 USD credit every month, meaning 20M read/write operations and about 80GB storage monthly - sufficient to run small production workloads._
 
-✅ Register (if needed) and Sign In to Astra DB [https://astra.datastax.com](https://astra.dev/6-1): You can use your `Github`, `Google` accounts or register with an `email`.
+✅ Register (if needed) and Sign In to Astra DB [https://astra.datastax.com]([https://astra.dev/6-1](https://astra.datastax.com)): You can use your `Github`, `Google` accounts or register with an `email`.
 
 _Make sure to chose a password with minimum 8 characters, containing upper and lowercase letters, at least one number and special character_
 
