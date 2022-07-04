@@ -16,8 +16,9 @@ To complete the workshop and get a verified badge, follow these simple steps:
 
 - Watch the workshop live or recorded.
 - Complete the workshop practice as described below and make the screenshot of the last step (result of the `DELETE` in "Execute CRUD", see [here](#homework-note)).
-<!---- Complete the following short courses: [Cassandra Data Modeling](https://www.datastax.com/dev/scenario/try-it-out-cassandra-data-modeling) and [Cassandra Query Language](https://www.datastax.com/dev/scenario/try-it-out-cassandra-query-language-cql). Take screenshots of the "Congratulations" page from each course. --->
-- [Submit the Homework through this form](https://dtsx.io/homework-intro-to-cassandra) and attach the screenshot(s) above.
+- Complete the mini-course [Cassandra Query Language](https://killercoda.com/datastaxdevs/course/cassandra-fundamentals/cql) and take a screenshot of the final screen (the one with buttons "Back"/"Restart" ... + console on the right).
+- Complete the mini-course "Cassandra Data Modeling / Digital Library": [lessons](https://www.datastax.com/learn/data-modeling-by-example/digital-library-data-model) and [practice](https://killercoda.com/datastaxdevs/course/cassandra-data-modeling/music-data). Take a screenshot of the final screen of the practice, with the console output at the right.
+- [Submit the Homework through this form](https://dtsx.io/homework-intro-to-cassandra) and attach the screenshot(s) you took.
 - Give us a few days to review your submission and relax: your well-earned badge will soon land in your mailbox!
 
 ## Table of Contents
